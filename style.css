@@ -1,51 +1,121 @@
 /* Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-body, html { font-family:'Poppins', sans-serif; scroll-behavior: smooth; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
 
 /* Navbar */
 nav {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:15px 50px; background-color: rgba(0,58,93,0.95);
-  position: sticky; top:0; z-index:1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0,58,93,0.95);
+  padding: 15px 50px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
-nav .logo { font-size:1.8rem; font-weight:700; color:#fff; }
-nav ul { list-style:none; display:flex; gap:25px; }
-nav ul li a { color:#fff; text-decoration:none; font-weight:500; transition:color 0.3s; }
-nav ul li a:hover { color:#00a6cd; }
+nav .logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+nav ul li a:hover {
+  color: #00a6cd;
+}
 
 /* Hero */
-.hero { position:relative; width:100%; height:100vh; background:url('https://i.redd.it/g5ypiho2uim21.jpg') center/cover no-repeat; display:flex; justify-content:center; align-items:center; }
-.hero .overlay { position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.45); }
-.hero-content { position:relative; text-align:center; color:#fff; display:flex; flex-direction:column; align-items:center; gap:20px; }
-.brand-name { font-size:8rem; font-weight:700; line-height:1; }
-.motto { font-size:2rem; font-weight:500; }
-.stats { display:flex; gap:30px; font-size:1.5rem; }
-.stats span { background:rgba(0,0,0,0.4); padding:12px 25px; border-radius:10px; }
-.cta-button { background-color:#00a6cd; color:#fff; padding:18px 40px; font-size:1.3rem; border-radius:5px; text-decoration:none; transition:0.3s; }
-.cta-button:hover { background-color:#0085a0; }
+.hero {
+  height: 100vh;
+  background: url('https://i.redd.it/g5ypiho2uim21.jpg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero .overlay {
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.45);
+}
+.hero-content {
+  position: relative;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.brand-name { font-size: 8rem; font-weight: 700; }
+.motto { font-size: 2rem; font-weight: 500; }
+.stats { display: flex; gap: 30px; font-size: 1.5rem; }
+.stats span {
+  background: rgba(0,0,0,0.4);
+  padding: 12px 25px;
+  border-radius: 10px;
+}
+.cta-button {
+  text-decoration: none;
+  background-color: #00a6cd;
+  padding: 18px 40px;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.3s;
+}
+.cta-button:hover { background-color: #0085a0; }
 
 /* About */
-.about { padding:60px 20px; background:#f5f5f5; text-align:center; }
-.about h2 { font-size:2.5rem; margin-bottom:20px; }
-.about p { font-size:1.2rem; max-width:800px; margin:0 auto; }
+.about { padding: 60px 20px; text-align: center; background-color: #f5f5f5; }
+.about h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.about p { font-size: 1.2rem; max-width: 800px; margin: 0 auto; }
 
 /* Fleet */
-.fleet { padding:60px 20px; text-align:center; background:#fff; }
-.fleet h2 { font-size:2.5rem; margin-bottom:40px; }
-.fleet-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; max-width:1200px; margin:0 auto; }
-.aircraft-card { padding:20px; background-color:#003a5d; color:#fff; border-radius:10px; transition:transform 0.3s; }
-.aircraft-card:hover { transform:translateY(-5px); }
-.aircraft-card h3 { font-size:1.2rem; margin-bottom:10px; }
-.aircraft-card p { font-size:1rem; }
+.fleet { padding: 60px 20px; text-align: center; background-color: #fff; }
+.fleet h2 { font-size: 2.5rem; margin-bottom: 40px; }
+.fleet-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.aircraft-card {
+  background-color: #003a5d;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+.aircraft-card:hover { transform: translateY(-5px); }
+.aircraft-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.aircraft-card p { font-size: 1rem; }
 
 /* Destinations */
-.destinations { padding:60px 20px; text-align:center; }
-.destinations h2 { font-size:2.5rem; margin-bottom:20px; }
+.destinations { padding: 60px 20px; text-align: center; }
+.destinations h2 { font-size: 2.5rem; margin-bottom: 20px; }
 
 /* Booking */
-.booking { padding:60px 20px; text-align:center; }
-.booking h2 { font-size:2.5rem; margin-bottom:20px; }
-.booking input { padding:12px; width:250px; font-size:1rem; border-radius:5px; border:1px solid #ccc; margin-right:10px; }
-.booking button { padding:12px 20px; font-size:1rem; border-radius:5px; border:none; background-color:#00a6cd; color:#fff; cursor:pointer; }
-.booking button:hover { background-color:#0085a0; }
-#route-results { margin-top:20px; font-size:1.1rem; }
+.booking { padding: 60px 20px; text-align: center; }
+.booking h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.booking input { padding: 12px; width: 250px; font-size: 1rem; border-radius: 5px; border: 1px solid #ccc; margin-right: 10px; }
+.booking button { padding: 12px 20px; font-size: 1rem; border-radius: 5px; border: none; background-color: #00a6cd; color: #fff; cursor: pointer; }
+.booking button:hover { background-color: #0085a0; }
+#route-results { margin-top: 20px; font-size: 1.1rem; }
