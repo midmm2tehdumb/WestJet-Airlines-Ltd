@@ -1,4 +1,4 @@
-/* Basic Page Reset */
+/* Reset & base */
 body, html {
   margin: 0;
   padding: 0;
@@ -6,16 +6,25 @@ body, html {
   overflow-x: hidden;
 }
 
+/* Navigation */
 nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
   background-color: #003a5d;
-  padding: 15px 30px;
+}
+
+nav .logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  gap: 25px;
   margin: 0;
   padding: 0;
 }
@@ -24,18 +33,71 @@ nav ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover {
   color: #00a6cd;
 }
 
-/* Hero Banner Styles */
+/* Hero Banner */
 .hero {
   position: relative;
-  width: 100%;
   height: 90vh;
   background: url('https://www.westjet.com/content/dam/westjet/images/aircraft/exterior/787/230517-westjet-plane-768x432.jpg') center/cover no-repeat;
   display: flex;
-  ali
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content .stats {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero-content .stats span {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.hero-content .cta-button {
+  display: inline-block;
+  background-color: #00a6cd;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.hero-content .cta-button:hover {
+  background-color: #0085a0;
+}
+
+/* Footer */
+footer {
+  background-color: #003a5d;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+}
