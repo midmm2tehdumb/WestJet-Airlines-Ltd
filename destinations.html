@@ -292,17 +292,6 @@ Object.keys(airportCoords).forEach(code => {
   marker.bindPopup(`<b>${code}</b><br><button onclick="showRoutes('${code}')">Show Routes</button>`);
 });
 
-// --------------------
-// Route drawing logic
-// --------------------
-const routes = [];
-
-// Example continental groupings (you can expand)
-const northAmerica = ["YVR","YYC","YYZ","LAX","JFK","ORD"];
-const europe = ["DUB","LHR","CDG","FRA"];
-const asia = ["ICN","NRT","HND","SIN"];
-const oceania = ["SYD","AKL"];
-
 // Function to draw line
 function drawRoute(from,to){
   const line = L.polyline([airportCoords[from],airportCoords[to]], {color:'#00a6cd', weight:2, opacity:0.7}).addTo(map);
