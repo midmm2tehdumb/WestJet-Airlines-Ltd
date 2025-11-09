@@ -1,96 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WestJet Airlines - Fleet</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* Fleet Section */
-.fleet {
-  padding: 60px 20px;
-  text-align: center;
-}
-.fleet h2 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-}
-
-/* Aircraft Cards */
-.fleet-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-.aircraft-card {
-  background: #fff;
-  width: 180px;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
-}
-.aircraft-card:hover { transform: scale(1.05); }
-.aircraft-card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
-.aircraft-card h3 {
-  font-size: 1rem;
-  margin: 10px;
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  background: rgba(0,0,0,0.85);
-  padding: 50px 20px;
-  box-sizing: border-box;
-}
-.modal-content {
-  max-width: 800px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: left;
-}
-.modal-content img {
-  width: 100%;
-  border-radius: 10px;
-}
-.modal-content h3 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-.modal-content p {
-  font-size: 1.1rem;
-  margin: 5px 0;
-}
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2rem;
-  color: #fff;
-  cursor: pointer;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WestJet Airlines - Fleet</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Navigation -->
+<!-- Navbar -->
 <nav>
   <div class="logo">WestJet Airlines</div>
   <ul class="nav-links">
