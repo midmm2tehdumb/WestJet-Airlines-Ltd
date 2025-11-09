@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WestJet Airlines - Destinations</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<style>
+  #map { height: 90vh; width: 100%; margin-top: 20px; border-radius: 15px; }
+  .leaflet-popup-content button {
+    margin-top: 5px;
+    background-color: #00a6cd;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .leaflet-popup-content button:hover { background-color: #0085a0; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">WestJet Airlines</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fleet.html">Fleet</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="booking.html">Booking</a></li>
+  </ul>
+</nav>
+
+<h2 style="text-align:center; margin-top:20px;">Our Destinations</h2>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+// Initialize map
+const map = L.map('map').setView([20, 0], 2);
+
+// Add OpenStreetMap tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+// Airports list
+const airports = [
+  "YVR","YYJ","YLW","YKA","YXS","YQQ","YYC","YEG","YMM","YQR","YXE","YWG","YYZ","YOW",
+  "YQT","YSB","YUL","YHZ","YZF","YXY","LAX","SFO","LAS","JFK","ORD","BOS","PHX","SEA",
+  "MCO","MIA","SFB","DFW","IAH","DEN","ATL","MSP","DTW","CLT","SAN","SLC","PDX","MKE",
+  "CLE","CVG","CMH","PHL","PIT","EWR","MEX","CUN","GDL","MTY","PVR","SJO","PTY","BOG",
+  "MDE","LIM","UIO","GRU","GIG","EZE","SCL","MVD","GYE","LPB","CCS","HAV","KIN","MBJ",
+  "NAS","PUJ","SJU","AUA","CUR","BZE","RTB","MGA","LHR","LGW","DUB","FRA","MUC","CDG",
+  "AMS","BRU","ZRH","VIE","MAD","BCN","LIS","CPH","OSL","ARN","HEL","KEF","MXP","FCO",
+  "VCE","FLR","MAN","EDI","GLA","NCE","LYS","TLS","MRS","NAP","WAW","KRK","PRG","BUD",
+  "OTP","SOF","ATH","IST","SVO","LED","KBP","BEG","ZAG","LJU","BTS","VNO","RIX","TLL",
+  "ICN","NRT","HND","KIX","NGO","CTS","FUK","PEK","PVG","CAN","SZX","HKG","TPE","BKK",
+  "HKT","SIN","KUL","CGK","DPS","MNL","CEB","HAN","SGN","PNH","REP","RGN","KTM","CMB",
+  "DEL","BOM","BLR","MAA","HYD","DAC","ISB","KHI","LHE","BNE","SYD","MEL","PER","AKL",
+  "WLG","CHC","NAN","APW","TBU","GUM","SPN","ROR","POM","NOU","VLI","HIR","DXB","AUH",
+  "DOH","RUH","JED","MCT","KWI","BAH","TLV","AMM","VIDP","VHHH","VOMM","WMKK","VOBL",
+  "VIDP","WSSS","VECC","WSSS","VABB","WSSS","VOBL","WSSS","VEBS","WSSS","VOBL","WSSS",
+  "VOTR","WSSS","VOHS","WSSS","VOCB","WSSS"
+];
+
+// Function to get coordinates via Mapbox API (or use hardcoded if preferred)
+const airportCoords = {
+  "YVR":[49.1947,-123.1792],"YYJ":[48.6469,-123.4268],"YLW":[50.1567,-119.25],"YKA":[52.2081,-122.6709],
+  "YXS":[53.8894,-122.6784],"YQQ":[49.12,-122.755],"YYC":[51.1139,-114.0208],"YEG":[53.3097,-113.5804],
+  "YMM":[53.3963,-112.8024],"YQR":[50.4319,-104.665],"YXE":[52.1708,-106.6994],"YWG":[49.9086,-97.2397],
+  "YYZ":[43.6777,-79.6248],"YOW":[45.3225,-75.6692],"YQT":[48.3717,-89.3239],"YSB":[46.5264,-84.3467],
+  "YUL":[45.4653,-73.7499],"YHZ":[44.8805,-63.5081],"YZF":[62.4651,-114.4405],"YXY":[60.7094,-135.0679],
+  "LAX":[33.9416,-118.4085],"SFO":[37.6213,-122.379],"JFK":[40.6413,-73.7781],"ORD":[41.9742,-87.9073]
+  // Add more coordinates here or expand this dictionary
+};
+
+// Add markers
+airports.forEach(code => {
+  if(airportCoords[code]){
+    const marker = L.marker(airportCoords[code]).addTo(map);
+    marker.bindPopup(`
+      <b>${code}</b><br>
+      <button onclick="showRoutes('${code}')">Show Routes</button>
+    `);
+  }
+});
+
+// Dummy function for routes
+function showRoutes(code){
+  alert('Showing routes for ' + code + '. You can later replace this with dynamic route info.');
+}
+
+</script>
+</body>
+</html>
