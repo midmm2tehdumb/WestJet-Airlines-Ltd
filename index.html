@@ -6,11 +6,25 @@
   <title>WestJet Airlines</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS for map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
 
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">WestJet Airlines</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#booking">Booking</a></li>
+    </ul>
+  </nav>
+
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="overlay"></div>
     <div class="hero-content">
       <h1 class="brand-name">WestJet</h1>
@@ -23,6 +37,114 @@
       <a href="https://discord.gg/kXRPrWTKTF" target="_blank" class="cta-button">Join our Discord</a>
     </div>
   </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <h2>About WestJet</h2>
+      <p>WestJet Airlines Ltd is a Canadian airline operating domestic, transborder, and international flights. With a modern fleet and strong service focus, WestJet connects travelers to over 250 destinations worldwide.</p>
+    </div>
+  </section>
+
+  <!-- Fleet Section -->
+  <section class="fleet" id="fleet">
+    <div class="container">
+      <h2>Our Fleet</h2>
+      <div class="fleet-cards">
+        <div class="aircraft-card">
+          <h3>WestJet Encore - De Havilland Canada Dash 8-400</h3>
+          <p>Quantity: 41</p>
+          <p>Used exclusively for WestJet Encore regional operations.</p>
+        </div>
+        <div class="aircraft-card">
+          <h3>WestJet - Boeing 737-700NG</h3>
+          <p>Quantity: 11</p>
+          <p>Older generation of 737, still in service.</p>
+        </div>
+        <div class="aircraft-card">
+          <h3>WestJet - Boeing 737-800</h3>
+          <p>Quantity: 49</p>
+          <p>Most common 737 in our fleet.</p>
+        </div>
+        <div class="aircraft-card">
+          <h3>WestJet - Boeing 737-MAX</h3>
+          <p>Quantity: 69</p>
+          <p>Newest generation of 737 for long-range and high-demand routes.</p>
+        </div>
+        <div class="aircraft-card">
+          <h3>WestJet - Boeing 787-9</h3>
+          <p>Quantity: 23</p>
+          <p>Largest aircraft in the fleet, used for long-haul international flights.</p>
+        </div>
+        <div class="aircraft-card">
+          <h3>WestJet - Boeing 787-10</h3>
+          <p>Quantity: 5</p>
+          <p>Newest addition, ideal for high-capacity long-haul routes.</p>
+        </div>
+        <div class="aircraft-card">
+          <h3>WestJet - Boeing 777-300ER</h3>
+          <p>Quantity: 18</p>
+          <p>Large aircraft for premium international routes.</p>
+        </div>
+        <div class="aircraft-card">
+          <h3>WestJet Cargo - Boeing 737-800BCF</h3>
+          <p>Quantity: 4</p>
+          <p>Freighter aircraft for cargo operations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations Section -->
+  <section class="destinations" id="destinations">
+    <div class="container">
+      <h2>Destinations</h2>
+      <div id="map" style="height:600px;"></div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section class="booking" id="booking">
+    <div class="container">
+      <h2>Booking</h2>
+      <p>Search by ICAO, IATA, city, or airport name:</p>
+      <input type="text" id="route-search" placeholder="E.g. YYZ, Toronto, LHR">
+      <button onclick="searchRoute()">Search</button>
+      <div id="route-results"></div>
+    </div>
+  </section>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Simple Leaflet Map for Destinations
+    var map = L.map('map').setView([56, -106], 3); // Centered on Canada
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Example airports
+    var airports = [
+      { name: "Toronto Pearson (YYZ)", coords: [43.6777, -79.6248] },
+      { name: "Vancouver (YVR)", coords: [49.1947, -123.1792] },
+      { name: "Calgary (YYC)", coords: [51.1139, -114.0208] },
+      { name: "Dubai (DXB)", coords: [25.2532, 55.3657] },
+    ];
+
+    airports.forEach(function(a){
+      var marker = L.marker(a.coords).addTo(map).bindPopup(a.name);
+      marker.on('click', function() {
+        alert("Show routes for " + a.name);
+      });
+    });
+
+    // Booking Search (simple mockup)
+    function searchRoute(){
+      var input = document.getElementById('route-search').value;
+      var resultDiv = document.getElementById('route-results');
+      resultDiv.innerHTML = "<p>Searching routes for <strong>"+input+"</strong>...<br>Possible aircraft: 737-800, 787-9</p>";
+    }
+  </script>
 
 </body>
 </html>
