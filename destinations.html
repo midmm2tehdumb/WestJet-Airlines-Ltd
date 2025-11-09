@@ -274,10 +274,26 @@ const airportCoords = {
 // Define hubs
 const hubs = ["YVR","YYC","YYZ","DUB","ICN"];
 
-// Draw markers
-Object.keys(airportCoords).forEach(code=>{
-  const marker = L.marker(airportCoords[code]).addTo(map);
+// Draw markers as circles, differentiate hubs
+// --------------------
+Object.keys(airportCoords).forEach(code => {
+  const isHub = hubs.includes(code); // check if the airport is a hub
+
+  // Add circle marker
+  const marker = L.circleMarker(airportCoords[code], {
+    radius: isHub ? 8 : 5,                   // bigger radius for hubs
+    color: isHub ? '#FFD100' : '#00a6cd',    // border color: yellow for hubs, blue for others
+    fillColor: isHub ? '#FFD100' : '#00a6cd',// fill color
+    fillOpacity: 0.9,
+    weight: 2
+  }).addTo(map);
+
+  // Add popup
   marker.bindPopup(`<b>${code}</b><br><button onclick="showRoutes('${code}')">Show Routes</button>`);
+});
+
+});
+
 });
 
 // --------------------
