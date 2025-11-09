@@ -1,131 +1,145 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WestJet Airlines - Fleet</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">WestJet Airlines</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fleet.html">Fleet</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="booking.html">Booking</a></li>
+  </ul>
+</nav>
+
+<!-- Fleet Section -->
+<section class="fleet">
+  <h2>Our Fleet</h2>
+  <div class="fleet-cards">
+    <!-- Aircraft cards -->
+    <div class="aircraft-card" onclick="openModal('dash8')">
+      <img src="https://p.turbosquid.com/ts-thumb/g4/rdFaei/Xs/d8wlpr2/jpg/1701364090/1920x1080/fit_q87/23ae956fce5ad6b767577c9f77df7ee7a11d8195/d8wlpr2.jpg" alt="Dash 8-400">
+      <h3>Dash 8-400</h3>
+    </div>
+    <div class="aircraft-card" onclick="openModal('b737700')">
+      <img src="https://flyawaysimulation.com/images/add-ons/21313/tdsx737-700-basezip-138-screen-20-f960.jpg" alt="737-700NG">
+      <h3>737-700NG</h3>
+    </div>
+    <div class="aircraft-card" onclick="openModal('b737800')">
+      <img src="https://www.shutterstock.com/image-photo/poltava-ukraine-23-march-2022-600nw-2175049335.jpg" alt="737-800">
+      <h3>737-800</h3>
+    </div>
+    <div class="aircraft-card" onclick="openModal('b737max')">
+      <img src="https://p.turbosquid.com/ts-thumb/yt/e85QvE/8G/73maxwlpr1/jpg/1640877348/1920x1080/fit_q87/4c83134bac19dfc09df465fc8d5e5922ff63d106/73maxwlpr1.jpg" alt="737-8MAX">
+      <h3>737-8MAX</h3>
+    </div>
+    <div class="aircraft-card" onclick="openModal('b7879')">
+      <img src="https://flyawaysimulation.com/images/add-ons/22655/camsim789ai-xzip-8-paint789v5-blanc-f640.jpg" alt="787-9">
+      <h3>787-9</h3>
+    </div>
+    <div class="aircraft-card" onclick="openModal('b78710')">
+      <img src="https://pandafoxtoys.com/cdn/shop/files/56026_1_1024x1024.jpg?v=1708849729" alt="787-10">
+      <h3>787-10</h3>
+    </div>
+    <div class="aircraft-card" onclick="openModal('b777300')">
+      <img src="https://p.turbosquid.com/ts-thumb/TX/YO61tv/VSoJPWil/773cmport3/jpg/1521030077/1920x1080/fit_q87/a7259cd3ec37eb9521e9f4ee45212102b9eb8d1f/773cmport3.jpg" alt="777-300ER">
+      <h3>777-300ER</h3>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="fleetModal" class="modal">
+  <span class="close-btn" onclick="closeModal()">&times;</span>
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
+<script>
+const aircraftData = {
+  dash8: {
+    name: "WestJet Encore - Dash 8-400",
+    topSpeed: "667 km/h",
+    range: "2,500 km",
+    specs: "Used exclusively for regional flights",
+    note: "Efficient for short-haul operations",
+    img: "https://p.turbosquid.com/ts-thumb/g4/rdFaei/Xs/d8wlpr2/jpg/1701364090/1920x1080/fit_q87/23ae956fce5ad6b767577c9f77df7ee7a11d8195/d8wlpr2.jpg"
+  },
+  b737700: {
+    name: "WestJet - Boeing 737-700NG",
+    topSpeed: "876 km/h",
+    range: "5,510 km",
+    specs: "Older generation of 737",
+    note: "Still in service on domestic routes",
+    img: "https://flyawaysimulation.com/images/add-ons/21313/tdsx737-700-basezip-138-screen-20-f960.jpg"
+  },
+  b737800: {
+    name: "WestJet - Boeing 737-800",
+    topSpeed: "876 km/h",
+    range: "5,665 km",
+    specs: "Most common 737 in our fleet",
+    note: "Versatile for domestic and short international flights",
+    img: "https://www.shutterstock.com/image-photo/poltava-ukraine-23-march-2022-600nw-2175049335.jpg"
+  },
+  b737max: {
+    name: "WestJet - Boeing 737-MAX",
+    topSpeed: "907 km/h",
+    range: "6,300 km",
+    specs: "Newest generation 737",
+    note: "Efficient for high-demand routes",
+    img: "https://p.turbosquid.com/ts-thumb/yt/e85QvE/8G/73maxwlpr1/jpg/1640877348/1920x1080/fit_q87/4c83134bac19dfc09df465fc8d5e5922ff63d106/73maxwlpr1.jpg"
+  },
+  b7879: {
+    name: "WestJet - Boeing 787-9",
+    topSpeed: "913 km/h",
+    range: "14,140 km",
+    specs: "Largest aircraft in the fleet",
+    note: "Used for long-haul international flights",
+    img: "https://flyawaysimulation.com/images/add-ons/22655/camsim789ai-xzip-8-paint789v5-blanc-f640.jpg"
+  },
+  b78710: {
+    name: "WestJet - Boeing 787-10",
+    topSpeed: "913 km/h",
+    range: "11,910 km",
+    specs: "Newest addition to fleet",
+    note: "High capacity for long-haul routes",
+    img: "https://pandafoxtoys.com/cdn/shop/files/56026_1_1024x1024.jpg?v=1708849729"
+  },
+  b777300: {
+    name: "WestJet - Boeing 777-300ER",
+    topSpeed: "905 km/h",
+    range: "13,650 km",
+    specs: "Premium long-haul aircraft",
+    note: "Ideal for international high-demand routes",
+    img: "https://p.turbosquid.com/ts-thumb/TX/YO61tv/VSoJPWil/773cmport3/jpg/1521030077/1920x1080/fit_q87/a7259cd3ec37eb9521e9f4ee45212102b9eb8d1f/773cmport3.jpg"
+  }
+};
+
+function openModal(key) {
+  const data = aircraftData[key];
+  const modalContent = document.getElementById('modalContent');
+  modalContent.innerHTML = `
+    <h3>${data.name}</h3>
+    <img src="${data.img}" alt="${data.name}">
+    <p><strong>Top Speed:</strong> ${data.topSpeed}</p>
+    <p><strong>Range:</strong> ${data.range}</p>
+    <p><strong>Other Specs:</strong> ${data.specs}</p>
+    <p><strong>Note:</strong> ${data.note}</p>
+  `;
+  document.getElementById('fleetModal').style.display = 'block';
 }
 
-body, html {
-  height: 100%;
-  font-family: 'Poppins', sans-serif;
-  scroll-behavior: smooth;
+function closeModal() {
+  document.getElementById('fleetModal').style.display = 'none';
 }
+</script>
 
-/* Navbar */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background-color: #00a6cd;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-nav .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #fff;
-}
-nav .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
-nav .nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-nav .nav-links li a:hover {
-  color: #ffd100;
-}
-
-/* Hero Section */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url('https://i.redd.it/g5ypiho2uim21.jpg') center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.hero .overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.45);
-}
-.hero-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-  gap: 20px;
-}
-.brand-name {
-  font-size: 8rem;
-  font-weight: 700;
-  line-height: 1;
-}
-.motto {
-  font-size: 2rem;
-  font-weight: 500;
-}
-.stats {
-  display: flex;
-  gap: 30px;
-  font-size: 1.5rem;
-}
-.stats span {
-  background: rgba(0,0,0,0.4);
-  padding: 12px 25px;
-  border-radius: 10px;
-}
-.cta-button {
-  background-color: #ffd100;
-  color: #000;
-  padding: 18px 40px;
-  font-size: 1.3rem;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-.cta-button:hover {
-  background-color: #e6c200;
-}
-
-/* About Section */
-.about {
-  padding: 80px 20px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
-.about h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-.about p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #333;
-}
-
-/* Fleet Page Placeholder */
-.fleet, .fleet-cards, .aircraft-card, .modal {
-  /* Styles included here so future pages can use same CSS */
-}
-
-/* Destinations Page Placeholder */
-.destinations {
-  /* Add styles later */
-}
-
-/* Booking Page Placeholder */
-.booking {
-  /* Add styles later */
-}
+</body>
+</html>
