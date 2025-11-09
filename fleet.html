@@ -6,6 +6,58 @@
   <title>WestJet Airlines - Fleet</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Fleet specific styles */
+    .fleet {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .fleet h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+    .aircraft-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .aircraft-icons button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .aircraft-icons button:hover { transform: scale(1.1); }
+    .aircraft-icons img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .aircraft-detail {
+      display: none;
+      margin-top: 30px;
+      text-align: left;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .aircraft-detail img {
+      width: 100%;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+    .aircraft-detail h3 { font-size: 2rem; margin-bottom: 10px; }
+    .aircraft-detail p { font-size: 1.1rem; margin: 5px 0; }
+  </style>
 </head>
 <body>
 
@@ -22,61 +74,108 @@
 
   <!-- Fleet Section -->
   <section class="fleet">
-    <div class="container">
-      <h2>Our Fleet</h2>
-      <div class="fleet-cards">
+    <h2>Our Fleet</h2>
 
-        <div class="aircraft-card">
-          <h3>WestJet Encore - De Havilland Canada Dash 8-400</h3>
-          <p>Quantity: 41</p>
-          <p>Used exclusively for WestJet Encore regional operations.</p>
-        </div>
-
-        <div class="aircraft-card">
-          <h3>WestJet - Boeing 737-700NG</h3>
-          <p>Quantity: 11</p>
-          <p>Older generation of 737, still in service.</p>
-        </div>
-
-        <div class="aircraft-card">
-          <h3>WestJet - Boeing 737-800</h3>
-          <p>Quantity: 49</p>
-          <p>Most common 737 in our fleet.</p>
-        </div>
-
-        <div class="aircraft-card">
-          <h3>WestJet - Boeing 737-MAX</h3>
-          <p>Quantity: 69</p>
-          <p>Newest generation of 737 for long-range and high-demand routes.</p>
-        </div>
-
-        <div class="aircraft-card">
-          <h3>WestJet - Boeing 787-9</h3>
-          <p>Quantity: 23</p>
-          <p>Largest aircraft in the fleet, used for long-haul international flights.</p>
-        </div>
-
-        <div class="aircraft-card">
-          <h3>WestJet - Boeing 787-10</h3>
-          <p>Quantity: 5</p>
-          <p>Newest addition, ideal for high-capacity long-haul routes.</p>
-        </div>
-
-        <div class="aircraft-card">
-          <h3>WestJet - Boeing 777-300ER</h3>
-          <p>Quantity: 18</p>
-          <p>Large aircraft for premium international routes.</p>
-        </div>
-
-        <div class="aircraft-card">
-          <h3>WestJet Cargo - Boeing 737-800BCF</h3>
-          <p>Quantity: 4</p>
-          <p>Freighter aircraft for cargo operations.</p>
-        </div>
-
-      </div>
+    <!-- Small plane buttons -->
+    <div class="aircraft-icons">
+      <button onclick="showAircraft('dash8')"><img src="https://i.imgur.com/Yz1M7fD.png" alt="Dash 8"></button>
+      <button onclick="showAircraft('b737700')"><img src="https://i.imgur.com/t7r0nOj.png" alt="737-700NG"></button>
+      <button onclick="showAircraft('b737800')"><img src="https://i.imgur.com/F3VfQlv.png" alt="737-800"></button>
+      <button onclick="showAircraft('b737max')"><img src="https://i.imgur.com/XfQnGKC.png" alt="737-MAX"></button>
+      <button onclick="showAircraft('b7879')"><img src="https://i.imgur.com/fRZ2i5B.png" alt="787-9"></button>
+      <button onclick="showAircraft('b78710')"><img src="https://i.imgur.com/qgTPcL7.png" alt="787-10"></button>
+      <button onclick="showAircraft('b777300')"><img src="https://i.imgur.com/1sK3EOI.png" alt="777-300ER"></button>
+      <button onclick="showAircraft('b737bcf')"><img src="https://i.imgur.com/0LcxmX7.png" alt="737-800BCF"></button>
     </div>
+
+    <!-- Aircraft detail container -->
+    <div id="aircraftDetail" class="aircraft-detail"></div>
+
   </section>
+
+  <script>
+    const aircraftData = {
+      dash8: {
+        name: "WestJet Encore - De Havilland Canada Dash 8-400",
+        topSpeed: "667 km/h",
+        range: "2,500 km",
+        specs: "Used exclusively for regional flights",
+        note: "Efficient for short-haul operations",
+        img: "https://i.imgur.com/Yz1M7fD.png"
+      },
+      b737700: {
+        name: "WestJet - Boeing 737-700NG",
+        topSpeed: "876 km/h",
+        range: "5,510 km",
+        specs: "Older generation of 737",
+        note: "Still in service on domestic routes",
+        img: "https://i.imgur.com/t7r0nOj.png"
+      },
+      b737800: {
+        name: "WestJet - Boeing 737-800",
+        topSpeed: "876 km/h",
+        range: "5,665 km",
+        specs: "Most common 737 in our fleet",
+        note: "Versatile for domestic and short international flights",
+        img: "https://i.imgur.com/F3VfQlv.png"
+      },
+      b737max: {
+        name: "WestJet - Boeing 737-MAX",
+        topSpeed: "907 km/h",
+        range: "6,300 km",
+        specs: "Newest generation 737",
+        note: "Efficient for high-demand routes",
+        img: "https://i.imgur.com/XfQnGKC.png"
+      },
+      b7879: {
+        name: "WestJet - Boeing 787-9",
+        topSpeed: "913 km/h",
+        range: "14,140 km",
+        specs: "Largest aircraft in the fleet",
+        note: "Used for long-haul international flights",
+        img: "https://i.imgur.com/fRZ2i5B.png"
+      },
+      b78710: {
+        name: "WestJet - Boeing 787-10",
+        topSpeed: "913 km/h",
+        range: "11,910 km",
+        specs: "Newest addition to fleet",
+        note: "High capacity for long-haul routes",
+        img: "https://i.imgur.com/qgTPcL7.png"
+      },
+      b777300: {
+        name: "WestJet - Boeing 777-300ER",
+        topSpeed: "905 km/h",
+        range: "13,650 km",
+        specs: "Premium long-haul aircraft",
+        note: "Ideal for international high-demand routes",
+        img: "https://i.imgur.com/1sK3EOI.png"
+      },
+      b737bcf: {
+        name: "WestJet Cargo - Boeing 737-800BCF",
+        topSpeed: "876 km/h",
+        range: "5,665 km",
+        specs: "Cargo freighter aircraft",
+        note: "Used for transporting freight",
+        img: "https://i.imgur.com/0LcxmX7.png"
+      }
+    };
+
+    function showAircraft(key) {
+      const detail = aircraftData[key];
+      const container = document.getElementById("aircraftDetail");
+      container.innerHTML = `
+        <h3>${detail.name}</h3>
+        <p><strong>Top Speed:</strong> ${detail.topSpeed}</p>
+        <p><strong>Range:</strong> ${detail.range}</p>
+        <p><strong>Other Specs:</strong> ${detail.specs}</p>
+        <p><strong>Note:</strong> ${detail.note}</p>
+        <img src="${detail.img}" alt="${detail.name}">
+      `;
+      container.style.display = "block";
+      container.scrollIntoView({behavior: "smooth"});
+    }
+  </script>
 
 </body>
 </html>
