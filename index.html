@@ -6,8 +6,6 @@
   <title>WestJet Airlines</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Leaflet CSS for map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
@@ -15,7 +13,7 @@
   <!-- Navigation Bar -->
   <nav>
     <div class="logo">WestJet Airlines</div>
-    <ul>
+    <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#fleet">Fleet</a></li>
       <li><a href="#destinations">Destinations</a></li>
@@ -24,7 +22,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero" id="home">
+  <section id="home" class="hero">
     <div class="overlay"></div>
     <div class="hero-content">
       <h1 class="brand-name">WestJet</h1>
@@ -39,7 +37,7 @@
   </section>
 
   <!-- About Section -->
-  <section class="about">
+  <section id="about" class="about">
     <div class="container">
       <h2>About WestJet</h2>
       <p>WestJet Airlines Ltd is a Canadian airline operating domestic, transborder, and international flights. With a modern fleet and strong service focus, WestJet connects travelers to over 250 destinations worldwide.</p>
@@ -47,7 +45,7 @@
   </section>
 
   <!-- Fleet Section -->
-  <section class="fleet" id="fleet">
+  <section id="fleet" class="fleet">
     <div class="container">
       <h2>Our Fleet</h2>
       <div class="fleet-cards">
@@ -96,7 +94,7 @@
   </section>
 
   <!-- Destinations Section -->
-  <section class="destinations" id="destinations">
+  <section id="destinations" class="destinations">
     <div class="container">
       <h2>Destinations</h2>
       <div id="map" style="height:600px;"></div>
@@ -104,7 +102,7 @@
   </section>
 
   <!-- Booking Section -->
-  <section class="booking" id="booking">
+  <section id="booking" class="booking">
     <div class="container">
       <h2>Booking</h2>
       <p>Search by ICAO, IATA, city, or airport name:</p>
@@ -117,13 +115,12 @@
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // Simple Leaflet Map for Destinations
-    var map = L.map('map').setView([56, -106], 3); // Centered on Canada
+    // Leaflet map
+    var map = L.map('map').setView([56, -106], 3);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data © OpenStreetMap contributors'
     }).addTo(map);
 
-    // Example airports
     var airports = [
       { name: "Toronto Pearson (YYZ)", coords: [43.6777, -79.6248] },
       { name: "Vancouver (YVR)", coords: [49.1947, -123.1792] },
@@ -138,13 +135,11 @@
       });
     });
 
-    // Booking Search (simple mockup)
     function searchRoute(){
       var input = document.getElementById('route-search').value;
       var resultDiv = document.getElementById('route-results');
       resultDiv.innerHTML = "<p>Searching routes for <strong>"+input+"</strong>...<br>Possible aircraft: 737-800, 787-9</p>";
     }
   </script>
-
 </body>
 </html>
