@@ -287,7 +287,11 @@ Object.keys(airportCoords).forEach(code => {
     fillOpacity: 0.9,
     weight: 2
   }).addTo(map);
-  
+
+  // Add popup
+  marker.bindPopup(`<b>${code}</b><br><button onclick="showRoutes('${code}')">Show Routes</button>`);
+});
+
 // Function to draw line
 function drawRoute(from,to){
   const line = L.polyline([airportCoords[from],airportCoords[to]], {color:'#00a6cd', weight:2, opacity:0.7}).addTo(map);
