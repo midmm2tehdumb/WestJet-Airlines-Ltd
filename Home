@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WestJet Airlines</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Fleet</a></li>
+      <li><a href="#">Destinations</a></li>
+      <li><a href="#">Booking</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="overlay">
+      <div class="hero-content">
+        <h1>Where your story takes off</h1>
+        <p class="stats">
+          <span>5+ hubs</span> &middot; <span>250+ destinations</span> &middot; <span>100s of aircraft</span>
+        </p>
+        <a class="cta-button" href="https://discord.gg/kXRPrWTKTF" target="_blank" rel="noopener">
+          Join our Discord community
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
