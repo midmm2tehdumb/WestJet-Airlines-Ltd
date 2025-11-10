@@ -278,6 +278,130 @@
   </div>
 </section>
 
+  <!-- Seat Selection Services Section -->
+<section class="seat-selection">
+  <h2>Seat Selection Services</h2>
+  
+  <div class="seat-buttons">
+    <button data-seat="economy">Economy Seat</button>
+    <button data-seat="exit-row">Exit Row Seat</button>
+    <button data-seat="extended">Extended Comfort Seat</button>
+    <button data-seat="premium">Premium Economy Seat</button>
+    <button data-seat="business">Business Class Seat</button>
+  </div>
+
+  <div class="seat-info-container">
+    <div class="seat-info" id="economy">
+      <h3>Economy Seat</h3>
+      <img src="https://static.wikia.nocookie.net/geofsaviation/images/b/bc/WestJet_Economy.png/revision/latest/cb=20250813004343" alt="Economy Seat">
+      <p>Standard seat with basic legroom. Suitable for short-haul flights and everyday travelers.</p>
+    </div>
+
+    <div class="seat-info" id="exit-row">
+      <h3>Exit Row Seat</h3>
+      <img src="https://static.wikia.nocookie.net/geofsaviation/images/d/db/WestJet_Exit_Row.png/revision/latest/scale-to-width-down/1000?cb=20250813004247" alt="Exit Row Seat">
+      <p>Extra legroom. Passengers seated here may need to assist in an emergency.</p>
+    </div>
+
+    <div class="seat-info" id="extended">
+      <h3>Extended Comfort Seat</h3>
+      <img src="https://static.wikia.nocookie.net/geofsaviation/images/c/ca/WestJet_Extended_Comfort.png/revision/latest/scale-to-width-down/1000?cb=20250813003826" alt="Extended Comfort Seat">
+      <p>Bigger legroom and enhanced comfort for longer flights. Ideal for taller passengers.</p>
+    </div>
+
+    <div class="seat-info" id="premium">
+      <h3>Premium Economy Seat</h3>
+      <img src="https://static.wikia.nocookie.net/geofsaviation/images/6/65/WestJet_Premium.png/revision/latest/cb=20250813003613" alt="Premium Economy Seat">
+      <p>Extra legroom, amenities, and additional comfort. Perfect for longer flights seeking more space.</p>
+    </div>
+
+    <div class="seat-info" id="business">
+      <h3>Business Class Seat</h3>
+      <img src="https://static.wikia.nocookie.net/geofsaviation/images/8/82/WestJet_Business.png/revision/latest/scale-to-width-down/1000?cb=20250813003518" alt="Business Class Seat">
+      <p>Private, spacious pod-like seat with premium amenities, fine dining, and enhanced privacy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Seat Selection CSS -->
+<style>
+  .seat-selection {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .seat-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  .seat-buttons button {
+    background-color: #1A3F70;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .seat-buttons button:hover {
+    background-color: #005a9c;
+  }
+  .seat-info-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .seat-info {
+    display: none;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  }
+  .seat-info img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  .seat-info h3 {
+    margin-bottom: 10px;
+    color: #1A3F70;
+  }
+
+  @media screen and (max-width: 768px) {
+    .seat-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>
+
+<!-- Seat Selection JS -->
+<script>
+  const buttons = document.querySelectorAll('.seat-buttons button');
+  const infos = document.querySelectorAll('.seat-info');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-seat');
+      infos.forEach(info => {
+        if(info.id === target){
+          info.style.display = (info.style.display === 'block') ? 'none' : 'block';
+        } else {
+          info.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
 <!-- Disclaimer -->
 <section class="disclaimer">
   <p>
@@ -296,6 +420,7 @@
     });
   });
 </script>
+
 
 </body>
 </html>
