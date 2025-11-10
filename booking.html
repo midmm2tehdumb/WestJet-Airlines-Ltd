@@ -13,40 +13,10 @@
   button:hover { background-color: #005a9c; }
   #results { margin-top: 20px; text-align: center; font-weight: bold; }
 
-<style>
-nav {
-  background-color: #1A3F70;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-nav .logo {
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-nav ul.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-}
-nav ul.nav-links li a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-nav ul.nav-links li a:hover {
-  text-decoration: underline;
-}
-</style>
-
 </head>
 <body>
 
-  <!-- Navbar -->
+<!-- Navbar -->
 <nav>
   <div class="logo">WestJet Airlines</div>
   <ul class="nav-links">
@@ -58,6 +28,58 @@ nav ul.nav-links li a:hover {
     <li><a href="rp.html">RP</a></li>
   </ul>
 </nav>
+
+<style>
+  /* Navbar styles */
+  nav {
+    background-color: #1A3F70; /* Blue background */
+    display: flex;
+    justify-content: space-between; /* Logo left, menu right */
+    align-items: center;
+    padding: 10px 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  nav .logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  nav ul.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+
+  nav ul.nav-links li a:hover {
+    color: #FFD700; /* optional hover effect */
+  }
+
+  /* Responsive tweak (optional) */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    nav ul.nav-links {
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+  }
+</style>
+
   
 <h2>Book Your Flight</h2>
 
