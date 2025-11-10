@@ -123,6 +123,39 @@
     .info-table tr:hover {
       background-color: #eef5ff;
     }
+    <!-- Add this inside <style> in the head or in your style.css -->
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  /* Stack subsidiary buttons vertically */
+  .subsidiary-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* Flight Number table scrolls horizontally */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .info-table th, .info-table td {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  /* Navbar adjustments */
+  nav {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 20px;
+  }
+
+  nav .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
   </style>
 </head>
 <body>
