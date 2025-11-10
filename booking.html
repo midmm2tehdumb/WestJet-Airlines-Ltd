@@ -295,9 +295,10 @@ function getDistance(coord1, coord2) {
 // Suggest plane based on distance
 function suggestPlane(distance) {
   if(distance < 275) return "Dash 8-400 / 737-700 / 737-800 / 737-8MAX";
-  if(distance < 1000) return "737-700 / 737-800 / 737-8MAX";
-  if(distance < 6000) return "787 / 777";
-  return "777 / 787";
+  if(distance < 5000) return "737-700 / 737-800 / 737-8MAX";
+  if(distance < 6000) return "737-8MAX";
+  if(distance < 14000) return "787-10 / 777-300ER";
+  if (distance < 15000) return "787-9";
 }
 
 // Estimate flight time in hours based on plane
