@@ -235,17 +235,3 @@ nav .nav-links li a:hover {
   nav { flex-direction: column; gap: 15px; }
   nav .nav-links { flex-direction: column; gap: 10px; }
 }
-
-/* Footer / Disclaimer Block */
-.site-footer {
-  background-color: ##1A3F70; /* WestJet teal */
-  color: white;
-  text-align: center;
-  padding: 15px 20px;
-  font-size: 0.9rem;
-  margin-top: 30px; /* space above the footer */
-}
-
-.site-footer strong {
-  font-weight: 600;
-}
