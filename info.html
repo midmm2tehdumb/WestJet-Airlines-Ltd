@@ -314,63 +314,81 @@
 
 <!-- ==== SCRIPT ==== -->
 <script>
-  // ==== Constitution Modal ====
+  // Elements
   const constitutionModal = document.getElementById('constitutionModal');
   const openConstitutionBtn = document.getElementById('openConstitution');
   const closeConstitutionBtn = document.getElementById('closeConstitution');
-
-  openConstitutionBtn.onclick = () => constitutionModal.style.display = 'block';
-  closeConstitutionBtn.onclick = () => constitutionModal.style.display = 'none';
-
-  // Article Buttons
   const articleButtons = document.querySelectorAll('.article-btn');
   const articleContent = document.getElementById('articleContent');
 
+  // Articles content
   const articles = {
-    I: `<h2>Article I — Identity and Structure</h2><p>…</p>`,
-    II: `<h2>Article II — Mission and Vision</h2><p>…</p>`,
-    III: `<h2>Article III — Governance and Leadership</h2><p>…</p>`,
-    IV: `<h2>Article IV — Membership and Conduct</h2><p>…</p>`,
-    V: `<h2>Article V — Operations and Standards</h2><p>…</p>`,
-    VI: `<h2>Article VI — Branding and Representation</h2><p>…</p>`,
-    VII: `<h2>Article VII — Amendments</h2><p>…</p>`,
-    VIII: `<h2>Article VIII — Enforcement and Interpretation</h2><p>…</p>`
+    I: `<h2>Article I — Identity and Structure</h2>...`, // shorten for example
+    II: `<h2>Article II — Mission and Vision</h2>...`,
+    III: `<h2>Article III — Governance and Leadership</h2>...`,
+    IV: `<h2>Article IV — Membership and Conduct</h2>...`,
+    V: `<h2>Article V — Operations and Standards</h2>...`,
+    VI: `<h2>Article VI — Branding and Representation</h2>...`,
+    VII: `<h2>Article VII — Amendments</h2>...`,
+    VIII: `<h2>Article VIII — Enforcement and Interpretation</h2>...`
   };
 
+  // Open/Close Constitution modal
+  openConstitutionBtn.onclick = () => constitutionModal.style.display = 'block';
+  closeConstitutionBtn.onclick = () => constitutionModal.style.display = 'none';
+
+  // Handle clicks outside modals
+  window.onclick = function(event) {
+    // Constitution modal
+    if (event.target == constitutionModal) {
+      constitutionModal.style.display = 'none';
+    }
+
+    // Subsidiary modals
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      if (event.target == modal) modal.style.display = 'none';
+    });
+  }
+
+  // Article buttons
   articleButtons.forEach(btn => {
     btn.style.cssText = `
-      background: linear-gradient(135deg,#0077c8,#00a0e0);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 15px;
-      transition: 0.2s;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      background:linear-gradient(135deg,#0077c8,#00a0e0);
+      color:white;
+      border:none;
+      border-radius:6px;
+      padding:10px 20px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:15px;
+      transition:0.2s;
+      box-shadow:0 3px 10px rgba(0,0,0,0.15);
     `;
     btn.onmouseover = () => btn.style.filter = 'brightness(1.15)';
     btn.onmouseout = () => btn.style.filter = 'none';
+
     btn.addEventListener('click', () => {
       articleContent.style.opacity = '0';
       setTimeout(() => {
         articleContent.innerHTML = articles[btn.dataset.article];
         articleContent.style.opacity = '1';
       }, 200);
+
       articleButtons.forEach(b => b.style.background = 'linear-gradient(135deg,#0077c8,#00a0e0)');
       btn.style.background = 'linear-gradient(135deg,#005fa3,#0088c9)';
     });
   });
 
-  // ==== Subsidiary Modals ====
-  function openModal(id) {
-    document.getElementById(id).style.display = 'block';
-  }
+  // Add fade/slide animations
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes slideIn { from {transform:translateY(40px);opacity:0;} to {transform:translateY(0);opacity:1;} }
+  `;
+  document.head.appendChild(style);
+</script>
 
-  function closeModal(id) {
-    document.getElementById(id).style.display = 'none';
-  }
 
   // ==== Close Modals on Outside Click ====
   window.onclick = function(event) {
