@@ -175,13 +175,6 @@
 
 <!-- About Section -->
 <section class="about">
-  <h2>About WestJet Virtual</h2>
-  <p>
-    WestJet Airlines (GeoFS) is a community-based virtual airline inspired by the real-world WestJet. 
-    We operate domestic, international, and long-haul routes across North America, Europe, and Asia 
-    with a modern fleet of Boeing aircraft.
-  </p>
-
   <h2>Our Mission</h2>
   <p>
     To bring realism, professionalism, and community engagement to the GeoFS flight simulator while still allowing freedom.  
@@ -197,6 +190,199 @@
     <li>✈ Incheon International Airport (ICN)</li>
   </ul>
 </section>
+
+<!-- Constitution Section-->
+  <!-- ==== WESTJET CONSTITUTION POPUP ==== -->
+
+<!-- Trigger Button -->
+<button id="openConstitution" style="
+  background:linear-gradient(135deg,#0077c8,#00a0e0);
+  color:white;
+  padding:14px 30px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:17px;
+  font-weight:600;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+  transition:0.3s;
+">
+  View WestJet Constitution
+</button>
+
+<!-- Modal -->
+<div id="constitutionModal" style="
+  display:none;
+  position:fixed;
+  z-index:100;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+  overflow-y:auto;
+  backdrop-filter:blur(6px);
+  animation:fadeIn 0.3s ease;
+  padding:60px 0;
+">
+  <div style="
+    background:white;
+    margin:auto;
+    padding:40px;
+    border-radius:20px;
+    width:85%;
+    max-width:950px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.3);
+    position:relative;
+    animation:slideIn 0.4s ease;
+  ">
+    <!-- Close Button -->
+    <span id="closeConstitution" style="
+      position:absolute;
+      top:20px;
+      right:25px;
+      font-size:30px;
+      font-weight:bold;
+      color:#555;
+      cursor:pointer;
+      transition:0.2s;
+    ">&times;</span>
+
+    <!-- Header -->
+    <div style="text-align:center; margin-bottom:25px;">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/WestJet_Logo.svg/2560px-WestJet_Logo.svg.png" 
+           alt="WestJet Logo" style="max-width:180px; margin-bottom:10px;">
+      <h1 style="color:#0077c8; margin:0;">WestJet Airlines Ltd.</h1>
+      <h3 style="color:#333; font-weight:500;">Corporate Constitution and Policy</h3>
+      <p style="font-style:italic; color:#666;">Effective November 10, 2025 — Established by CEO midmm2</p>
+    </div>
+
+    <!-- Preamble -->
+    <div style="background:#f3faff; padding:20px 25px; border-left:5px solid #0077c8; border-radius:10px; margin-bottom:25px;">
+      <p style="line-height:1.7; color:#333;">
+        In recognition of professionalism, integrity, and realism within the GeoFS aviation community,
+        <strong>WestJet Airlines Ltd.</strong> establishes this <em>Corporate Constitution and Policy</em> as the foundation
+        governing all divisions, members, and operations of the airline. This charter affirms WestJet’s commitment to
+        excellence in virtual aviation, collaboration within the Pacific Group, and maintaining a safe and respectful community.
+      </p>
+    </div>
+
+    <!-- Article Buttons -->
+    <div id="articleButtons" style="
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top:10px;
+      margin-bottom:25px;
+    ">
+      <button class="article-btn" data-article="I">Article I</button>
+      <button class="article-btn" data-article="II">Article II</button>
+      <button class="article-btn" data-article="III">Article III</button>
+      <button class="article-btn" data-article="IV">Article IV</button>
+      <button class="article-btn" data-article="V">Article V</button>
+      <button class="article-btn" data-article="VI">Article VI</button>
+      <button class="article-btn" data-article="VII">Article VII</button>
+      <button class="article-btn" data-article="VIII">Article VIII</button>
+    </div>
+
+    <!-- Article Display -->
+    <div id="articleContent" style="
+      border-top:2px solid #0077c8;
+      padding-top:25px;
+      color:#333;
+      line-height:1.7;
+      font-size:16px;
+      min-height:200px;
+      transition:opacity 0.3s ease;
+    ">
+      <p style="text-align:center; color:#666;">Select an article above to view its contents.</p>
+    </div>
+
+    <div style="text-align:center; margin-top:30px; color:#777; font-size:13px;">
+      © 2025 WestJet Airlines Ltd. — A member of the Pacific Group
+    </div>
+  </div>
+</div>
+
+<!-- ==== SCRIPT ==== -->
+<script>
+  const modal = document.getElementById('constitutionModal');
+  const openBtn = document.getElementById('openConstitution');
+  const closeBtn = document.getElementById('closeConstitution');
+  const articleButtons = document.querySelectorAll('.article-btn');
+  const articleContent = document.getElementById('articleContent');
+
+  openBtn.onclick = () => modal.style.display = 'block';
+  closeBtn.onclick = () => modal.style.display = 'none';
+  window.onclick = e => { if (e.target == modal) modal.style.display = 'none'; }
+
+  // Content per Article
+  const articles = {
+    I: `<h2>Article I — Identity and Structure</h2>
+        <p>The official name of the airline is <strong>WestJet Airlines Ltd.</strong>, headquartered in Calgary (YYC), Canada.
+        WestJet is a proud member of the Pacific Group, with subsidiaries including WestJet Encore and WestJet Cargo (WSX).</p>`,
+
+    II: `<h2>Article II — Mission and Vision</h2>
+        <p><strong>Mission:</strong> To deliver safe, professional, and realistic virtual flight experiences that connect communities and inspire aviation enthusiasts worldwide.</p>
+        <p><strong>Vision:</strong> To become the most respected and trusted virtual airline in the Pacific Group through operational excellence, innovation, and teamwork.</p>`,
+
+    III: `<h2>Article III — Governance and Leadership</h2>
+        <p>The <strong>Chief Executive Officer (CEO)</strong> holds the highest authority, overseeing all operations, strategy, and corporate direction.</p>
+        <p>The <strong>Executive Team</strong> includes the COO, Fleet and Routes Head, HR Lead, and Events Director, each responsible for respective operations. Regional Managers oversee major hubs in YYC, YYZ, and YVR.</p>`,
+
+    IV: `<h2>Article IV — Membership and Conduct</h2>
+        <p>Membership is open to all GeoFS players who uphold professionalism and respect. Members must act courteously, avoid trolling, and follow all group and alliance regulations. Inactivity over 30 days without notice may result in removal.</p>`,
+
+    V: `<h2>Article V — Operations and Standards</h2>
+        <p>All flights must originate or terminate at approved destinations and use fleet-appropriate aircraft. Cargo flights use the WSX identifier. Pilots are encouraged to operate realistically and safely within GeoFS.</p>`,
+
+    VI: `<h2>Article VI — Branding and Representation</h2>
+        <p>The WestJet name, logo, and livery are protected brand assets. Members are prohibited from altering or misusing branding in any capacity. Professionalism is required in all official communications.</p>`,
+
+    VII: `<h2>Article VII — Amendments</h2>
+        <p>Amendments to this Constitution may be made by the CEO or by a two-thirds (⅔) majority of the Executive Team. All changes must be announced publicly within 48 hours of approval.</p>`,
+
+    VIII: `<h2>Article VIII — Enforcement and Interpretation</h2>
+        <p>The CEO and Executive Team reserve the right to interpret this Constitution to maintain fairness and consistency. All disciplinary actions shall be transparent and proportional. CEO decisions are final.</p>`
+  };
+
+  // Button styling and functionality
+  articleButtons.forEach(btn => {
+    btn.style.cssText = `
+      background:linear-gradient(135deg,#0077c8,#00a0e0);
+      color:white;
+      border:none;
+      border-radius:6px;
+      padding:10px 20px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:15px;
+      transition:0.2s;
+      box-shadow:0 3px 10px rgba(0,0,0,0.15);
+    `;
+    btn.onmouseover = () => btn.style.filter = 'brightness(1.15)';
+    btn.onmouseout = () => btn.style.filter = 'none';
+    btn.addEventListener('click', () => {
+      articleContent.style.opacity = '0';
+      setTimeout(() => {
+        articleContent.innerHTML = articles[btn.dataset.article];
+        articleContent.style.opacity = '1';
+      }, 200);
+      articleButtons.forEach(b => b.style.background = 'linear-gradient(135deg,#0077c8,#00a0e0)');
+      btn.style.background = 'linear-gradient(135deg,#005fa3,#0088c9)';
+    });
+  });
+
+  // Animations
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes slideIn { from {transform:translateY(40px);opacity:0;} to {transform:translateY(0);opacity:1;} }
+  `;
+  document.head.appendChild(style);
+</script>
+
 
 <!-- Subsidiaries Section -->
 <section class="about">
