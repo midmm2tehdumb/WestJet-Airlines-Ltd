@@ -294,39 +294,6 @@ nav ul.nav-links li a:hover {
   line-height: 1.4;
 }
 
-/* Big Preamble Button */
-.preamble-btn {
-  background: linear-gradient(135deg,#0077c8,#00a0e0);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 20px 40px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: 0.2s;
-  display: block;
-  margin: 50px auto; /* centers on page */
-}
-.preamble-btn:hover {
-  filter: brightness(1.1);
-}
-
-/* Preamble text inside modal */
-.preamble-text {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-/* Ensure article buttons row inside modal keeps spacing */
-#articleButtons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
 
 #articleButtons {
   display: flex;
