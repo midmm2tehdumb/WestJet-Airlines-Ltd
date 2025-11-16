@@ -500,10 +500,17 @@ const articles = {
 
   
 window.onclick = function(event) {
-  // Constitution modal
-  if (event.target === constitutionModal) {
-    constitutionModal.style.display = 'none';
-  }
+  // Array of all modals
+  const modals = document.querySelectorAll('.modal, #constitutionModal');
+
+  modals.forEach(modal => {
+    // If you click directly on the modal background (not the content), close it
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+};
+
 
   // Subsidiary modals
   const modals = document.querySelectorAll('.modal');
@@ -682,8 +689,7 @@ window.onclick = function(event) {
   }
 
 
-    });
-  }
+
 </script>
 
 </body>
