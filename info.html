@@ -492,24 +492,21 @@ const articles = {
 </div>
 
 };
+// ==== OPEN/CLOSE MODALS ==== openConstitutionBtn.onclick = () => constitutionModal.style.display = 'block'; closeConstitutionBtn.onclick = () => constitutionModal.style.display = 'none';
 
-
-  // ==== OPEN/CLOSE MODALS ====
-  openConstitutionBtn.onclick = () => constitutionModal.style.display = 'block';
-  closeConstitutionBtn.onclick = () => constitutionModal.style.display = 'none';
-
-  
+// Close modals when clicking outside the content
 window.onclick = function(event) {
-  // Array of all modals
-  const modals = document.querySelectorAll('.modal, #constitutionModal');
+  // Select all modals by class
+  const modals = document.querySelectorAll('.modal');
 
   modals.forEach(modal => {
-    // If you click directly on the modal background (not the content), close it
+    // Only close if clicking directly on the modal overlay, not the content
     if (event.target === modal) {
-      modal.style.display = "none";
+      modal.style.display = 'none';
     }
   });
 };
+
 
 
   // ==== ARTICLE BUTTONS ====
