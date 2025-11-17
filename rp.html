@@ -13,14 +13,12 @@
       margin: 50px auto;
       padding: 0 20px;
     }
-
     .rp-section h2 {
       font-size: 2.5rem;
       margin-bottom: 20px;
       text-align: center;
       color: #1A3F70;
     }
-
     .rp-section .rp-card {
       background-color: #fff;
       border-radius: 15px;
@@ -30,41 +28,68 @@
       transition: transform 0.3s, box-shadow 0.3s;
       padding: 20px;
     }
-
     .rp-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 25px rgba(0,0,0,0.25);
     }
-
     .rp-card h3 {
       font-size: 1.8rem;
       color: #1A3F70;
       margin-bottom: 10px;
     }
-
     .rp-card-content {
       display: none;
       margin-top: 15px;
     }
-
     .rp-card-content table {
       width: 100%;
       border-collapse: collapse;
     }
-
     .rp-card-content th, .rp-card-content td {
       border: 1px solid #ddd;
       padding: 10px;
       text-align: center;
     }
-
     .rp-card-content th {
       background-color: #1A3F70;
       color: white;
     }
-
     .rp-card-content tr:nth-child(even) {
       background-color: #f9f9f9;
+    }
+
+    /* PDF Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 800px;
+      position: relative;
+    }
+    .modal-header h2 {
+      margin: 0;
+      color: #1A3F70;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+      color: #1A3F70;
     }
 
     /* Disclaimer at bottom */
@@ -76,7 +101,57 @@
       margin-top: 50px;
     }
 
-    /* Responsive */
+    /* Seat Selection */
+    .seat-selection {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .seat-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .seat-buttons button {
+      background-color: #1A3F70;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .seat-buttons button:hover {
+      background-color: #005a9c;
+    }
+    .seat-info-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .seat-info {
+      display: none;
+      text-align: center;
+      background-color: #f5f5f5;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    .seat-info img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .seat-info h3 {
+      margin-bottom: 10px;
+      color: #1A3F70;
+    }
+
     @media screen and (max-width: 768px) {
       .rp-card-content table, .rp-card-content th, .rp-card-content td {
         display: block;
@@ -89,6 +164,10 @@
       .rp-card-content tr {
         display: block;
         margin-bottom: 15px;
+      }
+      .seat-buttons {
+        flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
@@ -108,10 +187,10 @@
   </ul>
 </nav>
 
-  <!-- Button -->
+<!-- PDF Button -->
 <button id="openPDF" class="wm-button">Open Western Menu</button>
 
-<!-- Modal -->
+<!-- PDF Modal -->
 <div id="pdfModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -125,7 +204,6 @@
 <!-- RP Section -->
 <section class="rp-section">
   <h2>Catering Services</h2>
-
   <!-- Economy Class -->
   <div class="rp-card">
     <h3>Economy Class Catering (Domestic)</h3>
@@ -233,69 +311,11 @@
       <p>Relax with individually wrapped pillows, blankets, and Herschel amenity kits.</p>
     </div>
   </div>
-
-  <h2>Seat Selection Services</h2>
-  <div class="rp-card">
-    <h3>Seat Options</h3>
-    <div class="rp-card-content">
-      <table>
-        <tr>
-          <th>Class</th>
-          <th>Standard</th>
-          <th>Exit Row</th>
-          <th>Extended Comfort</th>
-          <th>Premium Economy</th>
-          <th>Business</th>
-        </tr>
-        <tr>
-          <td>Location</td>
-          <td>Economy Cabin</td>
-          <td>Exit Rows in Economy</td>
-          <td>Front of Economy</td>
-          <td>Premium Cabin</td>
-          <td>Business Cabin</td>
-        </tr>
-        <tr>
-          <td>Legroom</td>
-          <td>Least</td>
-          <td>Extra</td>
-          <td>Extra</td>
-          <td>Extra elbow/legroom</td>
-          <td>Spacious Pod</td>
-        </tr>
-        <tr>
-          <td>Seat Selection</td>
-          <td>Fee for Ultrabasic/Econo</td>
-          <td>Fee for Ultrabasic/Econo</td>
-          <td>Fee for Ultrabasic/Econo</td>
-          <td>Included with Premium Fare</td>
-          <td>Included with Business Fare</td>
-        </tr>
-        <tr>
-          <td>Boarding</td>
-          <td>General</td>
-          <td>Earlier</td>
-          <td>Priority (Z2)</td>
-          <td>Priority (Z1)</td>
-          <td>Priority (Z1)</td>
-        </tr>
-        <tr>
-          <td>Priority Check-In</td>
-          <td>No</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Yes</td>
-          <td>Yes</td>
-        </tr>
-      </table>
-    </div>
-  </div>
 </section>
 
-  <!-- Seat Selection Services Section -->
+<!-- Seat Selection -->
 <section class="seat-selection">
   <h2>Seat Selection Services</h2>
-  
   <div class="seat-buttons">
     <button data-seat="economy">Economy Seat</button>
     <button data-seat="exit-row">Exit Row Seat</button>
@@ -303,32 +323,27 @@
     <button data-seat="premium">Premium Economy Seat</button>
     <button data-seat="business">Business Class Seat</button>
   </div>
-
   <div class="seat-info-container">
     <div class="seat-info" id="economy">
       <h3>Economy Seat</h3>
       <img src="https://www.westjet.com/content/dam/westjet/images/aircraft/cabin/economy/210318-787-interior-560x560.jpg" alt="Economy Seat">
       <p>Standard seat with basic legroom. Suitable for short-haul flights and everyday travelers.</p>
     </div>
-
     <div class="seat-info" id="exit-row">
       <h3>Exit Row Seat</h3>
       <img src="https://i.ytimg.com/vi/pLLlvlutlyI/maxresdefault.jpg" alt="Exit Row Seat">
       <p>Extra legroom. Passengers seated here may need to assist in an emergency.</p>
     </div>
-
     <div class="seat-info" id="extended">
       <h3>Extended Comfort Seat</h3>
       <img src="https://www.westjet.com/content/dam/westjet/images/aircraft/cabin/20240311-extra-leg-room-guest-648x648.jpg" alt="Extended Comfort Seat">
       <p>Bigger legroom and enhanced comfort for longer flights. Ideal for taller passengers.</p>
     </div>
-
     <div class="seat-info" id="premium">
       <h3>Premium Economy Seat</h3>
       <img src="https://i.ytimg.com/vi/ewmkMcl1EA4/maxresdefault.jpg" alt="Premium Economy Seat">
       <p>Extra legroom, amenities, and additional comfort. Perfect for longer flights seeking more space.</p>
     </div>
-
     <div class="seat-info" id="business">
       <h3>Business Class Seat</h3>
       <img src="https://i.ytimg.com/vi/ndkhu5WoBtM/maxresdefault.jpg" alt="Business Class Seat">
@@ -336,102 +351,6 @@
     </div>
   </div>
 </section>
-
-<!-- Seat Selection CSS -->
-<style>
-  .seat-selection {
-    padding: 60px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .seat-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-  }
-  .seat-buttons button {
-    background-color: #1A3F70;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .seat-buttons button:hover {
-    background-color: #005a9c;
-  }
-  .seat-info-container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .seat-info {
-    display: none;
-    text-align: center;
-    background-color: #f5f5f5;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  }
-  .seat-info img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-  }
-  .seat-info h3 {
-    margin-bottom: 10px;
-    color: #1A3F70;
-  }
-
-  @media screen and (max-width: 768px) {
-    .seat-buttons {
-      flex-direction: column;
-      gap: 10px;
-    }
-  }
-</style>
-
-// Seat Selection JS
-const buttons = document.querySelectorAll('.seat-buttons button');
-const infos = document.querySelectorAll('.seat-info');
-
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const target = btn.getAttribute('data-seat');
-    infos.forEach(info => {
-      if(info.id === target){
-        info.style.display = (info.style.display === 'block') ? 'none' : 'block';
-      } else {
-        info.style.display = 'none';
-      }
-    });
-  });
-});
-
-// PDF Modal JS
-document.getElementById("openPDF").onclick = function() {
-  document.getElementById("pdfFrame").src = "WM.pdf"; // Your PDF file
-  document.getElementById("pdfModal").style.display = "block";
-};
-
-document.querySelector(".close").onclick = function() {
-  document.getElementById("pdfModal").style.display = "none";
-};
-
-window.onclick = function(event) {
-  if (event.target == document.getElementById("pdfModal")) {
-    document.getElementById("pdfModal").style.display = "none";
-  }
-};
-
-
-</script>
 
 <!-- Disclaimer -->
 <section class="disclaimer">
@@ -441,8 +360,9 @@ window.onclick = function(event) {
   </p>
 </section>
 
+<!-- All JS at bottom -->
 <script>
-  // Expand/collapse RP cards
+  // RP Cards toggle
   const rpCards = document.querySelectorAll('.rp-card');
   rpCards.forEach(card => {
     card.addEventListener('click', () => {
@@ -450,8 +370,40 @@ window.onclick = function(event) {
       content.style.display = content.style.display === 'block' ? 'none' : 'block';
     });
   });
-</script>
 
+  // Seat selection toggle
+  const seatButtons = document.querySelectorAll('.seat-buttons button');
+  const seatInfos = document.querySelectorAll('.seat-info');
+  seatButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-seat');
+      seatInfos.forEach(info => {
+        info.style.display = (info.id === target && info.style.display !== 'block') ? 'block' : 'none';
+      });
+    });
+  });
+
+  // PDF Modal
+  const openPDF = document.getElementById("openPDF");
+  const pdfModal = document.getElementById("pdfModal");
+  const pdfFrame = document.getElementById("pdfFrame");
+  const closeModal = document.querySelector(".close");
+
+  openPDF.addEventListener("click", () => {
+    pdfFrame.src = "WM.pdf";
+    pdfModal.style.display = "block";
+  });
+
+  closeModal.addEventListener("click", () => {
+    pdfModal.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if(event.target === pdfModal){
+      pdfModal.style.display = "none";
+    }
+  });
+</script>
 
 </body>
 </html>
