@@ -737,6 +737,12 @@ window.addEventListener("click", (e) => {
     constitutionModal.style.display = "none";
   }
 });
+articleButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const article = button.getAttribute('data-article');
+    articleContent.innerHTML = articles[article];
+  });
+});
 
 </script>
 
