@@ -378,3 +378,25 @@ nav ul.nav-links li a:hover {
   font-size: 28px;
   cursor: pointer;
 }
+
+/* ===== Constitution Modal Namespace ===== */
+.constitution-modal {
+  backdrop-filter: blur(5px);
+  z-index: 10000; /* on top of other modals */
+}
+
+.constitution-modal-content img {
+  max-width: 180px;
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive tweaks for Constitution modal */
+@media screen and (max-width: 768px) {
+  .constitution-modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+}
