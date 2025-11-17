@@ -171,6 +171,22 @@
     gap: 10px;
   }
 }
+.article-btn {
+  background: #0077c8;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.article-btn:hover {
+  background: #0094e0;
+  transform: translateY(-3px);
+}
 
   </style>
 </head>
@@ -659,6 +675,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // ==== ARTICLE SWITCHING ====
+articleButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const key = button.dataset.article;
+    articleContent.style.opacity = 0;
+
+    setTimeout(() => {
+      articleContent.innerHTML = articles[key];
+      articleContent.style.opacity = 1;
+    }, 200);
+  });
+});
+
+
   // Article button functionality
 
   articleButtons.forEach(btn => {
@@ -692,6 +722,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// ==== OPEN & CLOSE MODAL ====
+openConstitutionBtn.addEventListener("click", () => {
+  constitutionModal.style.display = "block";
+});
+
+closeConstitutionBtn.addEventListener("click", () => {
+  constitutionModal.style.display = "none";
+});
+
+// Close modal if clicking outside box
+window.addEventListener("click", (e) => {
+  if (e.target === constitutionModal) {
+    constitutionModal.style.display = "none";
+  }
+});
 
 </script>
 
