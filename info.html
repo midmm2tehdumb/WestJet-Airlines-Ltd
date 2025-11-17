@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WestJet Airlines - Information</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: #ffffff;
+  margin: auto;
+  padding: 25px;
+  max-width: 900px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
     /* Subsidiary Cards */
     .subsidiary-cards {
       display: grid;
@@ -87,6 +112,29 @@
 .close-btn:hover {
   color: #0077c8;
 }
+
+  .constitution-wrapper {
+  display: flex;
+  gap: 25px;
+}
+
+.article-list {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.article-display {
+  flex: 1;
+  background: #f5f7fa;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 300px;
+  font-size: 1rem;
+  overflow-y: auto;
+}
+
 
 /* Animations */
 @keyframes fadeIn {
@@ -248,15 +296,22 @@
 
 <!-- Constitution Modal -->
 <div id="constitutionModal" class="modal">
+<div id="constitutionModal" class="modal">
   <div class="modal-content">
     <span id="closeConstitution" class="close-btn">&times;</span>
 
-    <div style="text-align:center; margin-bottom:25px;">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9A5A_N0GTlss0AGJLI-_rHTZzLZQL8P0UUg&s" 
-           alt="WestJet Logo" style="max-width:180px; margin-bottom:10px;">
-      <h1 style="color:#0077c8; margin:0;">WestJet Airlines Ltd.</h1>
-      <h3 style="color:#333; font-weight:500;">Corporate Constitution and Policy</h3>
-      <p style="font-style:italic; color:#666;">Effective November 10, 2025 — Established by CEO midmm2</p>
+    <div class="constitution-wrapper">
+      <div class="article-list">
+        <!-- your <button class="article-btn"> buttons stay here -->
+      </div>
+
+      <div class="article-display" id="article-content">
+        Select an article from the left.
+      </div>
+    </div>
+  </div>
+</div>
+
     </div>
 
     <!-- Preamble -->
@@ -664,17 +719,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const articleButtons = document.querySelectorAll('.article-btn');
   const articleContent = document.getElementById('articleContent');
 
-  // Open / Close modal
-  openConstitutionBtn.onclick = () => constitutionModal.style.display = 'block';
-  closeConstitutionBtn.onclick = () => constitutionModal.style.display = 'none';
-
-  // Close modal if clicking outside content
-  window.onclick = event => {
-    if (event.target === constitutionModal) {
-      constitutionModal.style.display = 'none';
-    }
-  };
-
   // ==== ARTICLE SWITCHING ====
 articleButtons.forEach(button => {
   button.addEventListener("click", () => {
@@ -687,6 +731,19 @@ articleButtons.forEach(button => {
     }, 200);
   });
 });
+
+  // Open / Close modal
+  openConstitutionBtn.onclick = () => constitutionModal.style.display = 'block';
+  closeConstitutionBtn.onclick = () => constitutionModal.style.display = 'none';
+
+  // Close modal if clicking outside content
+  window.onclick = event => {
+    if (event.target === constitutionModal) {
+      constitutionModal.style.display = 'none';
+    }
+  };
+
+
 
 
   // Article button functionality
