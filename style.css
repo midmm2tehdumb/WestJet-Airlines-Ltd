@@ -491,16 +491,12 @@ nav ul.nav-links li a:hover {
 .center-button .subsidiary-card:hover {
   background-color: #005a9c;
   transform: translateY(-3px);
-}
 
-/* Remove random bullets from any button lists */
-#articleButtons, .article-buttons {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+}
+/* Remove bullets from hubs list */
+.hubs-list {
+  list-style: none;       /* no bullets */
+  padding-left: 0;        /* remove default indent */
+  margin-left: 0;         /* optional, remove extra space */
 }
 
