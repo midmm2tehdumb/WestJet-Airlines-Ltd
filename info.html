@@ -43,9 +43,14 @@
   <button id="openConstitution" class="primary-btn">View WestJet Constitution</button>
 </div>
 
+<!-- Constitution Modal -->
 <div id="constitutionModal" class="modal">
   <div class="modal-content">
+    
+    <!-- Close Button -->
     <span class="close-btn" id="closeConstitution">&times;</span>
+
+    <!-- Modal Header -->
     <div class="modal-header">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9A5A_N0GTlss0AGJLI-_rHTZzLZQL8P0UUg&s" alt="WestJet Logo" class="logo-img">
       <h1>WestJet Airlines Ltd.</h1>
@@ -53,34 +58,54 @@
       <p class="modal-subtext">Effective November 10, 2025 — Established by CEO midmm2</p>
     </div>
 
-    <div class="modal-preamble">
-      <p>In recognition of professionalism, integrity, and realism within the GeoFS aviation community,
-        <strong>WestJet Airlines Ltd.</strong> establishes this <em>Corporate Constitution and Policy</em> as the foundation
-        governing all divisions, members, and operations of the airline.
-      </p>
+    <!-- Scrollable Content -->
+    <div class="modal-content-inner">
+      
+      <p>Welcome to the WestJet Airlines Constitution and Policy section. Please select a part below to view the full details.</p>
+
+      <!-- Constitution Part Buttons -->
+      <div id="articleButtons" class="button-group">
+        <button class="article-btn">Constitution Part 1</button>
+        <button class="article-btn">Constitution Part 2</button>
+        <button class="article-btn">Constitution Part 3</button>
+      </div>
+
+      <div class="modal-preamble">
+        <p>In recognition of professionalism, integrity, and realism within the GeoFS aviation community,
+          <strong>WestJet Airlines Ltd.</strong> establishes this <em>Corporate Constitution and Policy</em> as the foundation
+          governing all divisions, members, and operations of the airline.
+        </p>
+      </div>
+
+      <!-- Articles Buttons -->
+      <div class="article-buttons button-group">
+        <button class="article-btn" data-article="I">Article I</button>
+        <button class="article-btn" data-article="II">Article II</button>
+        <button class="article-btn" data-article="III">Article III</button>
+        <button class="article-btn" data-article="IV">Article IV</button>
+        <button class="article-btn" data-article="V">Article V</button>
+        <button class="article-btn" data-article="VI">Article VI</button>
+        <button class="article-btn" data-article="VII">Article VII</button>
+        <button class="article-btn" data-article="VIII">Article VIII</button>
+        <button class="article-btn" data-article="IX">Article IX</button>
+      </div>
+
+      <!-- Article Content Display -->
+      <div id="articleContent" class="article-content">
+        <p>Select an article above to view its contents.</p>
+      </div>
     </div>
 
-    <div class="article-buttons">
-      <button class="article-btn" data-article="I">Article I</button>
-      <button class="article-btn" data-article="II">Article II</button>
-      <button class="article-btn" data-article="III">Article III</button>
-      <button class="article-btn" data-article="IV">Article IV</button>
-      <button class="article-btn" data-article="V">Article V</button>
-      <button class="article-btn" data-article="VI">Article VI</button>
-      <button class="article-btn" data-article="VII">Article VII</button>
-      <button class="article-btn" data-article="VIII">Article VIII</button>
-      <button class="article-btn" data-article="IX">Article IX</button>
-    </div>
-
-    <div id="articleContent" class="article-content">
-      <p>Select an article above to view its contents.</p>
-    </div>
-
+    <!-- Modal Footer -->
     <div class="modal-footer">
       © 2025 WestJet Airlines Ltd. — A GeoFS Virtual Airline
     </div>
+
   </div>
 </div>
+
+
+
 
 <!-- Subsidiaries Section -->
 <section class="about">
