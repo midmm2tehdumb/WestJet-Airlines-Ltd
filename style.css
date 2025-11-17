@@ -467,3 +467,40 @@ nav ul.nav-links li a:hover {
   font-size: 0.95rem;
   color: #555;
 }
+
+/* Centering container for Constitution button */
+.center-button {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+/* Make primary button like subsidiary-card */
+.center-button .subsidiary-card {
+  background-color: #1A3F70; /* WestJet blue */
+  color: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  text-align: center;
+}
+
+.center-button .subsidiary-card:hover {
+  background-color: #005a9c;
+  transform: translateY(-3px);
+}
+
+/* Remove random bullets from any button lists */
+#articleButtons, .article-buttons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
