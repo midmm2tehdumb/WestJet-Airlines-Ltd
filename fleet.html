@@ -25,6 +25,7 @@
 <section class="fleet">
   <h2>Our Fleet</h2>
   <div class="fleet-cards">
+
     <!-- A320 Family -->
     <div class="aircraft-card" onclick="openModal('a319')"><img src="a319.png" alt="A319"><h3>A319</h3></div>
     <div class="aircraft-card" onclick="openModal('a320')"><img src="a320.png" alt="A320"><h3>A320</h3></div>
@@ -33,14 +34,19 @@
 
     <!-- A330 Family -->
     <div class="aircraft-card" onclick="openModal('a330200')"><img src="a330200.png" alt="A330-200"><h3>A330-200</h3></div>
-    <div class="aircraft-card" onclick="openModal('a330300')"><img src="a330300.png" alt="A330-300"><h3>A330-300</h3></div>
+
+    <!-- A340 Family -->
+    <div class="aircraft-card" onclick="openModal('a340300')"><img src="a340300.png" alt="A340-300"><h3>A340-300</h3></div>
+    <div class="aircraft-card" onclick="openModal('a340600')"><img src="a340600.png" alt="A340-600"><h3>A340-600</h3></div>
 
     <!-- A350 Family -->
     <div class="aircraft-card" onclick="openModal('a350900')"><img src="a350900.png" alt="A350-900"><h3>A350-900</h3></div>
-    <div class="aircraft-card" onclick="openModal('a3501000')"><img src="a3501000.png" alt="A350-1000XWB"><h3>A350-1000XWB</h3></div>
+    <div class="aircraft-card" onclick="openModal('a3501000')"><img src="a3501000.png" alt="A350-1000"><h3>A350-1000</h3></div>
+
+    <!-- A380 -->
+    <div class="aircraft-card" onclick="openModal('a380')"><img src="a380.png" alt="A380"><h3>A380</h3></div>
 
     <!-- Boeing 747 -->
-    <div class="aircraft-card" onclick="openModal('747400')"><img src="747400.png" alt="747-400"><h3>747-400</h3></div>
     <div class="aircraft-card" onclick="openModal('7478')"><img src="7478.png" alt="747-8"><h3>747-8</h3></div>
 
     <!-- Boeing 777 -->
@@ -50,6 +56,7 @@
     <!-- Regional jets -->
     <div class="aircraft-card" onclick="openModal('crj900')"><img src="crj900.png" alt="CRJ900"><h3>CRJ900</h3></div>
     <div class="aircraft-card" onclick="openModal('e190')"><img src="e190.png" alt="Embraer E190"><h3>Embraer E190</h3></div>
+
   </div>
 </section>
 
@@ -66,10 +73,11 @@ const aircraftData = {
   a321: { name:"Lufthansa - Airbus A321", topSpeed:"871 km/h", range:"5,950 km", specs:"Medium-haul aircraft", note:"Used on busy European routes", img:"a321.png" },
   a321xlr: { name:"Lufthansa - Airbus A321XLR", topSpeed:"871 km/h", range:"8,700 km", specs:"Extended range A321", note:"Thin long-haul routes", img:"a321xlr.png" },
   a330200: { name:"Lufthansa - Airbus A330-200", topSpeed:"871 km/h", range:"11,750 km", specs:"Medium-long haul widebody", note:"Intercontinental flights", img:"a330200.png" },
-  a330300: { name:"Lufthansa - Airbus A330-300", topSpeed:"871 km/h", range:"11,300 km", specs:"Medium-long haul widebody", note:"Intercontinental flights", img:"a330300.png" },
+  a340300: { name:"Lufthansa - Airbus A340-300", topSpeed:"871 km/h", range:"13,500 km", specs:"Long-haul widebody", note:"Classic long-haul aircraft", img:"a340300.png" },
+  a340600: { name:"Lufthansa - Airbus A340-600", topSpeed:"871 km/h", range:"14,450 km", specs:"Largest A340 variant", note:"High-capacity long-haul flights", img:"a340600.png" },
   a350900: { name:"Lufthansa - Airbus A350-900", topSpeed:"905 km/h", range:"15,000 km", specs:"Long-haul widebody", note:"Modern long-haul aircraft", img:"a350900.png" },
   a3501000: { name:"Lufthansa - Airbus A350-1000XWB", topSpeed:"913 km/h", range:"16,100 km", specs:"Largest A350 variant", note:"Used on ultra long-haul routes", img:"a3501000.png" },
-  "747400": { name:"Lufthansa - Boeing 747-400", topSpeed:"907 km/h", range:"13,450 km", specs:"Classic jumbo jet", note:"Flagship for long-haul flights", img:"747400.png" },
+  a380: { name:"Lufthansa - Airbus A380", topSpeed:"1,020 km/h", range:"15,200 km", specs:"Double-deck superjumbo", note:"Flagship high-capacity long-haul", img:"a380.png" },
   "7478": { name:"Lufthansa - Boeing 747-8", topSpeed:"907 km/h", range:"14,320 km", specs:"Latest jumbo variant", note:"High-capacity intercontinental flights", img:"7478.png" },
   "777300": { name:"Lufthansa - Boeing 777-300ER", topSpeed:"905 km/h", range:"13,650 km", specs:"Long-haul aircraft", note:"Used on popular international routes", img:"777300.png" },
   "7779": { name:"Lufthansa - Boeing 777-9", topSpeed:"905 km/h", range:"16,000 km", specs:"Newest 777 variant", note:"High capacity ultra long-haul", img:"7779.png" },
