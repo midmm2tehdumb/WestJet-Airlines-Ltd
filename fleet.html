@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WestJet Airlines - Fleet</title>
+<title>Lufthansa Airlines - Fleet</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -11,14 +11,13 @@
 
 <!-- Navbar -->
 <nav>
-  <div class="logo">WestJet Airlines</div>
+  <div class="logo">Lufthansa Airlines</div>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="fleet.html">Fleet</a></li>
     <li><a href="destinations.html">Destinations</a></li>
     <li><a href="booking.html">Booking</a></li>
     <li><a href="info.html">Information</a></li>
-    <li><a href="rp.html">RP</a></li>
   </ul>
 </nav>
 
@@ -26,41 +25,31 @@
 <section class="fleet">
   <h2>Our Fleet</h2>
   <div class="fleet-cards">
-    <!-- Dash 8-400 -->
-    <div class="aircraft-card" onclick="openModal('dash8')">
-      <img src="Q400.png" alt="Dash 8-400">
-      <h3>Dash 8-400</h3>
-    </div>
-    <!-- 737-700NG -->
-    <div class="aircraft-card" onclick="openModal('b737700')">
-      <img src="737-700.png" alt="737-700NG">
-      <h3>737-700NG</h3>
-    </div>
-    <!-- 737-800 -->
-    <div class="aircraft-card" onclick="openModal('b737800')">
-      <img src="737-800.png" alt="737-800">
-      <h3>737-800</h3>
-    </div>
-    <!-- 737-8MAX -->
-    <div class="aircraft-card" onclick="openModal('b737max')">
-      <img src="737-8MAX.png" alt="737-8MAX">
-      <h3>737-8MAX</h3>
-    </div>
-    <!-- 787-9 -->
-    <div class="aircraft-card" onclick="openModal('b7879')">
-      <img src="787-9.png" alt="787-9">
-      <h3>787-9</h3>
-    </div>
-    <!-- 787-10 -->
-    <div class="aircraft-card" onclick="openModal('b78710')">
-      <img src="787X.png" alt="787-10">
-      <h3>787-10</h3>
-    </div>
-    <!-- 777-300ER -->
-    <div class="aircraft-card" onclick="openModal('b777300')">
-      <img src="777-300ER.png" alt="777-300ER">
-      <h3>777-300ER</h3>
-    </div>
+    <!-- A320 Family -->
+    <div class="aircraft-card" onclick="openModal('a319')"><img src="a319.png" alt="A319"><h3>A319</h3></div>
+    <div class="aircraft-card" onclick="openModal('a320')"><img src="a320.png" alt="A320"><h3>A320</h3></div>
+    <div class="aircraft-card" onclick="openModal('a321')"><img src="a321.png" alt="A321"><h3>A321</h3></div>
+    <div class="aircraft-card" onclick="openModal('a321xlr')"><img src="a321xlr.png" alt="A321XLR"><h3>A321XLR</h3></div>
+
+    <!-- A330 Family -->
+    <div class="aircraft-card" onclick="openModal('a330200')"><img src="a330200.png" alt="A330-200"><h3>A330-200</h3></div>
+    <div class="aircraft-card" onclick="openModal('a330300')"><img src="a330300.png" alt="A330-300"><h3>A330-300</h3></div>
+
+    <!-- A350 Family -->
+    <div class="aircraft-card" onclick="openModal('a350900')"><img src="a350900.png" alt="A350-900"><h3>A350-900</h3></div>
+    <div class="aircraft-card" onclick="openModal('a3501000')"><img src="a3501000.png" alt="A350-1000XWB"><h3>A350-1000XWB</h3></div>
+
+    <!-- Boeing 747 -->
+    <div class="aircraft-card" onclick="openModal('747400')"><img src="747400.png" alt="747-400"><h3>747-400</h3></div>
+    <div class="aircraft-card" onclick="openModal('7478')"><img src="7478.png" alt="747-8"><h3>747-8</h3></div>
+
+    <!-- Boeing 777 -->
+    <div class="aircraft-card" onclick="openModal('777300')"><img src="777300.png" alt="777-300ER"><h3>777-300ER</h3></div>
+    <div class="aircraft-card" onclick="openModal('7779')"><img src="7779.png" alt="777-9"><h3>777-9</h3></div>
+
+    <!-- Regional jets -->
+    <div class="aircraft-card" onclick="openModal('crj900')"><img src="crj900.png" alt="CRJ900"><h3>CRJ900</h3></div>
+    <div class="aircraft-card" onclick="openModal('e190')"><img src="e190.png" alt="Embraer E190"><h3>Embraer E190</h3></div>
   </div>
 </section>
 
@@ -72,62 +61,20 @@
 
 <script>
 const aircraftData = {
-  dash8: {
-    name: "WestJet Encore - Dash 8-400",
-    topSpeed: "667 km/h",
-    range: "2,500 km",
-    specs: "Used exclusively for regional Encore flights",
-    note: "Efficient for short-haul operations. 40 in service. 20-25 ordered.",
-    img: "Q400.png"
-  },
-  b737700: {
-    name: "WestJet - Boeing 737-700NG",
-    topSpeed: "876 km/h",
-    range: "5,510 km",
-    specs: "Older generation of 737",
-    note: "Still in service on domestic routes. 11 in service, 5 retired.",
-    img: "737-700.png"
-  },
-  b737800: {
-    name: "WestJet - Boeing 737-800",
-    topSpeed: "876 km/h",
-    range: "5,665 km",
-    specs: "Secondary 737 in our fleet. ",
-    note: "Versatile for domestic and short international flights. 45 commercial in service. (8 cargo in service)",
-    img: "737-800.png"
-  },
-  b737max: {
-    name: "WestJet - Boeing 737-MAX",
-    topSpeed: "907 km/h",
-    range: "6,300 km",
-    specs: "Newest and most common generation 737. 99 in service. 51 ordered.",
-    note: "Efficient for high-demand routes",
-    img: "737-8MAX.png"
-  },
-  b7879: {
-    name: "WestJet - Boeing 787-9",
-    topSpeed: "913 km/h",
-    range: "14,140 km",
-    specs: "Longest-range aircraft in our fleet.",
-    note: "Used for long-haul international flights. 23 in service. 15 ordered.",
-    img: "787-9.png"
-  },
-  b78710: {
-    name: "WestJet - Boeing 787-10",
-    topSpeed: "913 km/h",
-    range: "11,910 km",
-    specs: "Newest addition to fleet.",
-    note: "High capacity for long-haul routes. 10 in service, 10 ordered.",
-    img: "787X.png"
-  },
-  b777300: {
-    name: "WestJet - Boeing 777-300ER",
-    topSpeed: "905 km/h",
-    range: "13,650 km",
-    specs: "Largest aircraft in our fleet.",
-    note: "Ideal for international high-demand routes. 15 commercial in service. 5 freighter in service.",
-    img: "777-300ER.png"
-  }
+  a319: { name:"Lufthansa - Airbus A319", topSpeed:"871 km/h", range:"6,900 km", specs:"Short to medium-haul aircraft", note:"Used on European and domestic routes", img:"a319.png" },
+  a320: { name:"Lufthansa - Airbus A320", topSpeed:"871 km/h", range:"6,100 km", specs:"Short to medium-haul aircraft", note:"European and domestic workhorse", img:"a320.png" },
+  a321: { name:"Lufthansa - Airbus A321", topSpeed:"871 km/h", range:"5,950 km", specs:"Medium-haul aircraft", note:"Used on busy European routes", img:"a321.png" },
+  a321xlr: { name:"Lufthansa - Airbus A321XLR", topSpeed:"871 km/h", range:"8,700 km", specs:"Extended range A321", note:"Thin long-haul routes", img:"a321xlr.png" },
+  a330200: { name:"Lufthansa - Airbus A330-200", topSpeed:"871 km/h", range:"11,750 km", specs:"Medium-long haul widebody", note:"Intercontinental flights", img:"a330200.png" },
+  a330300: { name:"Lufthansa - Airbus A330-300", topSpeed:"871 km/h", range:"11,300 km", specs:"Medium-long haul widebody", note:"Intercontinental flights", img:"a330300.png" },
+  a350900: { name:"Lufthansa - Airbus A350-900", topSpeed:"905 km/h", range:"15,000 km", specs:"Long-haul widebody", note:"Modern long-haul aircraft", img:"a350900.png" },
+  a3501000: { name:"Lufthansa - Airbus A350-1000XWB", topSpeed:"913 km/h", range:"16,100 km", specs:"Largest A350 variant", note:"Used on ultra long-haul routes", img:"a3501000.png" },
+  "747400": { name:"Lufthansa - Boeing 747-400", topSpeed:"907 km/h", range:"13,450 km", specs:"Classic jumbo jet", note:"Flagship for long-haul flights", img:"747400.png" },
+  "7478": { name:"Lufthansa - Boeing 747-8", topSpeed:"907 km/h", range:"14,320 km", specs:"Latest jumbo variant", note:"High-capacity intercontinental flights", img:"7478.png" },
+  "777300": { name:"Lufthansa - Boeing 777-300ER", topSpeed:"905 km/h", range:"13,650 km", specs:"Long-haul aircraft", note:"Used on popular international routes", img:"777300.png" },
+  "7779": { name:"Lufthansa - Boeing 777-9", topSpeed:"905 km/h", range:"16,000 km", specs:"Newest 777 variant", note:"High capacity ultra long-haul", img:"7779.png" },
+  crj900: { name:"Lufthansa Regional - Bombardier CRJ900", topSpeed:"860 km/h", range:"2,800 km", specs:"Regional jet", note:"Used for regional flights", img:"crj900.png" },
+  e190: { name:"Lufthansa Regional - Embraer E190", topSpeed:"828 km/h", range:"4,500 km", specs:"Regional jet", note:"Used for European regional routes", img:"e190.png" }
 };
 
 function openModal(key) {
@@ -147,15 +94,14 @@ function openModal(key) {
 function closeModal() {
   document.getElementById('fleetModal').style.display = 'none';
 }
-
-
 </script>
 
 </body>
-  <!-- Disclaimer / Terms Block -->
+
+<!-- Disclaimer -->
 <section class="disclaimer" style="background-color:#1A3F70; color:white; padding:30px; text-align:center; margin-top:50px;">
   <p>
-    <strong>Disclaimer:</strong> WestJet Airlines is a virtual GeoFS airline and does not represent the real-life WestJet Airlines Ltd. 
+    <strong>Disclaimer:</strong> Lufthansa Airlines is a virtual GeoFS airline and does not represent the real-life Lufthansa Group. 
     This website and content are intended for entertainment and educational purposes within the virtual flight simulator community.
   </p>
 </section>
