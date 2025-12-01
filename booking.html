@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lufthansa Airlines - Booking</title>
     <link rel="stylesheet" href="style.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WestJet Airlines - Booking</title>
 </head>
 
 <body>
 
 <!-- Navbar -->
 <nav>
-  <div class="logo">WestJet Airlines</div>
+  <div class="logo">Lufthansa Airlines</div>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="fleet.html">Fleet</a></li>
     <li><a href="destinations.html">Destinations</a></li>
     <li><a href="booking.html">Booking</a></li>
     <li><a href="info.html">Information</a></li>
-    <li><a href="rp.html">RP</a></li>
   </ul>
 </nav>
-
 
 <style>
   /* Navbar styles */
   nav {
-    background-color: #1A3F70; /* Blue background */
+    background-color: #1A3F70;
     display: flex;
-    justify-content: space-between; /* Logo left, menu right */
+    justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -57,10 +55,9 @@
   }
 
   nav ul.nav-links li a:hover {
-    color: #FFD700; /* optional hover effect */
+    color: #FFD700;
   }
 
-  /* Responsive tweak (optional) */
   @media (max-width: 700px) {
     nav {
       flex-direction: column;
@@ -72,6 +69,32 @@
       margin-top: 10px;
     }
   }
+
+  /* Booking form */
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 30px auto;
+  }
+
+  .booking-form label {
+    font-weight: bold;
+  }
+
+  .booking-form select, .booking-form button {
+    padding: 8px;
+    font-size: 1rem;
+  }
+
+  .disclaimer {
+    background-color: #1A3F70;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+  }
 </style>
 
 <h2>Book Your Flight</h2>
@@ -80,11 +103,13 @@
   <label for="departure">Departure Airport:</label>
   <select id="departure">
     <option value="">-- Select Departure --</option>
+    <!-- Populate with your airports -->
   </select>
 
   <label for="arrival">Arrival Airport:</label>
   <select id="arrival">
     <option value="">-- Select Arrival --</option>
+    <!-- Populate with your airports -->
   </select>
 
   <button onclick="calculateFlight()">Check Flight</button>
@@ -93,233 +118,13 @@
 <div id="results"></div>
 
 <script>
-  // Example airport coordinates (fill in your own)
+  // Placeholder dataset for airports
   const airportCoords = {
-  // Canada
-  "YVR":[49.1947,-123.1792],
-  "YYJ":[48.6469,-123.4258],
-  "YLW":[50.6799,-119.3866],
-  "YKA":[52.1700,-106.6990],
-  "YXS":[53.8894,-122.7039],
-  "YQQ":[49.6117,-125.5983],
-  "YYC":[51.1139,-114.0208],
-  "YEG":[53.3097,-113.5804],
-  "YMM":[56.6538,-111.2227],
-  "YQR":[50.4319,-104.6667],
-  "YXE":[52.1700,-106.6990],
-  "YWG":[49.9097,-97.2394],
-  "YYZ":[43.6777,-79.6248],
-  "YOW":[45.3225,-75.6692],
-  "YQT":[48.3719,-89.3236],
-  "YSB":[46.4950,-84.5094],
-  "YUL":[45.4650,-73.7442],
-  "YHZ":[44.8808,-63.5081],
-  "YZF":[62.4653,-114.4409],
-  "YXY":[60.7091,-135.0678],
-  // USA
-  "HNL":[21.3187,-157.9254],
-  "ANC":[61.2176-149.8997],
-  "LAX":[33.9416,-118.4085],
-  "SFO":[37.6213,-122.3790],
-  "LAS":[36.0840,-115.1537],
-  "JFK":[40.6413,-73.7781],
-  "ORD":[41.9742,-87.9073],
-  "BOS":[42.3656,-71.0096],
-  "PHX":[33.4342,-112.0116],
-  "SEA":[47.4502,-122.3088],
-  "MCO":[28.4312,-81.3081],
-  "MIA":[25.7959,-80.2870],
-  "SFB":[28.7762,-81.2385],
-  "DFW":[32.8998,-97.0403],
-  "IAH":[29.9902,-95.3368],
-  "DEN":[39.8617,-104.6731],
-  "ATL":[33.6407,-84.4277],
-  "MSP":[44.8848,-93.2223],
-  "DTW":[42.2162,-83.3554],
-  "CLT":[35.2144,-80.9431],
-  "SAN":[32.7338,-117.1933],
-  "SLC":[40.7884,-111.9775],
-  "PDX":[45.5898,-122.5951],
-  "MKE":[42.9472,-87.8966],
-  "CLE":[41.4117,-81.8490],
-  "CVG":[39.0481,-84.6676],
-  "CMH":[39.9986,-82.8917],
-  "PHL":[39.8729,-75.2437],
-  "PIT":[40.4915,-80.2329],
-  "EWR":[40.6895,-74.1745],
-  "SFB":[28.7762,-81.2385],
-  "DFW":[32.8998,-97.0403],
-  "IAH":[29.9902,-95.3368],
-  "DEN":[39.8617,-104.6731],
-  "ATL":[33.6407,-84.4277],
-  "MSP":[44.8848,-93.2223],
-  "DTW":[42.2162,-83.3554],
-  "CLT":[35.2144,-80.9431],
-  "SAN":[32.7338,-117.1933],
-  "SLC":[40.7884,-111.9775],
-  "PDX":[45.5898,-122.5951],
-  "MKE":[42.9472,-87.8966],
-  "CLE":[41.4117,-81.8490],
-  "CVG":[39.0481,-84.6676],
-  "CMH":[39.9986,-82.8917],
-  "PHL":[39.8729,-75.2437],
-  "PIT":[40.4915,-80.2329],
-  "EWR":[40.6895,-74.1745],
-  "MEX":[19.4361,-99.0719],
-  "CUN":[21.0365,-86.8771],
-  "GDL":[20.5218,-103.3110],
-  "MTY":[25.7781,-100.1070],
-  "PVR":[20.6800,-105.2530],
-  "SJO":[9.9939,-84.2089],
-  "PTY":[8.9733,-79.5550],
-  "KIN":[17.9360,-76.7878],
-  "MBJ":[18.5036,-77.9136],
-  "NAS":[25.0392,-77.4662],
-  "PUJ":[18.5673,-68.3630],
-  "SJU":[18.4394,-66.0018],
-  "AUA":[12.5011,-70.0156],
-  "CUR":[12.1896,-68.9598],
-  "BZE":[17.5392,-88.3086],
-  "RTB":[15.4101,-86.5429],
-  "MGA":[12.1364,-86.1686],
-  // South American airports
-  "BOG":[4.7016,-74.1469],
-  "MDE":[6.1645,-75.4236],
-  "LIM":[-12.0219,-77.1143],
-  "UIO":[-0.1297,-78.3572],
-  "GRU":[-23.4356,-46.4731],
-  "GIG":[-22.8089,-43.2436],
-  "EZE":[-34.8222,-58.5358],
-  "SCL":[-33.3928,-70.7858],
-  "MVD":[-34.8361,-56.0306],
-  "GYE":[-2.1574,-79.8836],
-  "LPB":[-16.5136,-68.1925],
-  // European airports
-  "LHR":[51.4700,-0.4543],
-  "LGW":[51.1537,-0.1821],
-  "DUB":[53.4213,-6.2701],
-  "FRA":[50.0379,8.5622],
-  "MUC":[48.3538,11.7861],
-  "CDG":[49.0097,2.5479],
-  "AMS":[52.3086,4.7639],
-  "BRU":[50.9014,4.4844],
-  "ZRH":[47.4581,8.5492],
-  "VIE":[48.1103,16.5697],
-  "MAD":[40.4722,-3.5608],
-  "BCN":[41.2974,2.0833],
-  "LIS":[38.7742,-9.1342],
-  "CPH":[55.6181,12.6558],
-  "OSL":[60.1939,11.1004],
-  "ARN":[59.6519,17.9186],
-  "HEL":[60.3172,24.9633],
-  "KEF":[63.9850,-22.6056],
-  "MXP":[45.6306,8.7281],
-  "FCO":[41.8003,12.2389],
-  "VCE":[45.5053,12.3519],
-  "FLR":[43.8106,11.2058],
-  "MAN":[53.3644,-2.2728],
-  "EDI":[55.9500,-3.3725],
-  "GLA":[55.8719,-4.4333],
-  "NCE":[43.6584,7.2150],
-  "LYS":[45.7269,4.9245],
-  "TLS":[43.6294,1.3636],
-  "MRS":[43.4359,5.2155],
-  "NAP":[40.8860,14.2906],
-  "WAW":[52.1657,20.9671],
-  "KRK":[50.0777,19.7841],
-  "PRG":[50.1008,14.2706],
-  "BUD":[47.4369,19.2557],
-  "OTP":[44.5722,26.1025],
-  "SOF":[42.6895,23.4052],
-  "ATH":[37.9364,23.9445],
-  "IST":[41.2753,28.7519],
-  "SVO":[55.9726,37.4146],
-  "LED":[59.8003,30.2625],
-  "KBP":[50.3450,30.8947],
-  "BEG":[44.8186,20.3090],
-  "ZAG":[45.7426,16.0680],
-  "LJU":[46.2230,14.4576],
-  "BTS":[48.1700,17.2122],
-  "VNO":[54.6341,25.2856],
-  "RIX":[56.9236,23.9716],
-  "TLL":[59.4133,24.8328],
- // Asia airports (code + coordinates only)
-  "ICN":[37.4602,126.4407],
-  "NRT":[35.7767,140.3186],
-  "HND":[35.5494,139.7798],
-  "KIX":[34.4347,135.2442],
-  "NGO":[35.2556,136.9233],
-  "CTS":[42.7752,141.6923],
-  "FUK":[33.5869,130.4508],
-  "PEK":[40.0801,116.5846],
-  "PVG":[31.1443,121.8083],
-  "CAN":[23.3924,113.2985],
-  "SZX":[22.6393,113.8100],
-  "HKG":[22.3080,113.9185],
-  "TPE":[25.0777,121.2329],
-  "BKK":[13.6811,100.7473],
-  "HKT":[8.1100,98.3160],
-  "SIN":[1.3644,103.9915],
-  "KUL":[2.7456,101.7100],
-  "CGK":[-6.1256,106.6559],
-  "DPS":[-8.7481,115.1675],
-  "MNL":[14.5086,121.0194],
-  "CEB":[10.3076,123.9780],
-  "HAN":[21.2178,105.8050],
-  "SGN":[10.8133,106.6648],
-  "PNH":[11.5466,104.8447],
-  "REP":[13.4100,103.8130],
-  "RGN":[16.9070,96.1330],
-  "KTM":[27.7017,85.3557],
-  "CMB":[7.1800,79.8840],
-  "DEL":[28.5562,77.1000],
-  "BOM":[19.0896,72.8656],
-  "BLR":[13.1979,77.7063],
-  "MAA":[12.9949,80.1709],
-  "HYD":[17.4626,78.4667],
-  "DAC":[23.8436,90.3978],
-  "ISB":[33.6167,72.9833],
-  "KHI":[24.9060,67.1607],
-  "LHE":[31.5216,74.4036],
-  // Oceania airports
-  "BNE":[-27.3842,153.1175],
-  "SYD":[-33.9399,151.1753],
-  "MEL":[-37.6733,144.8433],
-  "PER":[-31.9403,115.9671],
-  "AKL":[-37.0081,174.7911],
-  "WLG":[-41.3272,174.8058],
-  "CHC":[-43.4896,172.5328],
-  "NAN":[-17.7569,177.4436],
-  "APW":[-13.8299,-171.7516],
-  "TBU":[-21.2410,-175.1490],
-  "GUM":[13.4950,144.8000],
-  "SPN":[-6.8219,155.5300],
-  "ROR":[7.3672,134.5442],
-  "POM":[-9.4444,147.2206],
-  "NOU":[-22.0144,166.2136],
-  "VLI":[-17.7333,168.3167],
-  "HIR":[-20.5167,169.5333],
-  // Middle East airports
-  "DXB":[25.2528,55.3644],
-  "AUH":[24.4321,54.6516],
-  "DOH":[25.2611,51.5651],
-  "RUH":[24.9580,46.6987],
-  "JED":[21.6702,39.1520],
-  "MCT":[23.5933,58.2844],
-  "KWI":[29.2289,47.9689],
-  "BAH":[26.2708,50.6336],
-  "TLV":[32.0061,34.8859],
-  "AMM":[31.7225,35.9939],
-    // Africa
-  "CAI":[30.1160,31.4172],
-  "ADD":[8.9838,38.7963],
-  "LOS":[6.5796,3.3226],
-  "NBO":[-1.3225,36.9245],
-  "CMN":[33.3703,-7.5829]
-
+    // Add your Lufthansa-relevant airports here, e.g.
+    // "FRA": [50.0379, 8.5622],
+    // "MUC": [48.3538, 11.7861]
   };
 
-  // Populate dropdowns
   const departureSelect = document.getElementById('departure');
   const arrivalSelect = document.getElementById('arrival');
 
@@ -345,35 +150,32 @@
     return R * c;
   }
 
-  // Suggest plane based on distance
+  // Suggest plane based on distance (Lufthansa fleet)
   function suggestPlane(distance) {
-    if(distance < 1100) return "Dash 8-400 / 737-700 / 737-800 / 737-8MAX";
-    if(distance < 5000) return "737-700 / 737-800 / 737-8MAX";
-    if(distance < 6000) return "737-8MAX";
-    if(distance < 11000) return "787-10 / 777-300ER / 787-9";
-    if(distance < 13000) return "777-300ER / 787-9";
-    if(distance < 14000) return "787-9";
-    if(distance < 50000) return "Too far. Choose another route.";
+    if(distance < 1000) return "A320 / A321 / A319";
+    if(distance < 2500) return "A320 / A321 / A319 / A321XLR";
+    if(distance < 5000) return "A321XLR / A330";
+    if(distance < 8000) return "A330 / 777-9";
+    if(distance < 12000) return "777-9 / 787-9 / A350-900";
+    if(distance < 15000) return "A350-1000XWB / 777-9";
+    return "Too far. Choose another route.";
   }
 
-  // Estimate flight time in hours based on plane
+  // Estimate flight time based on aircraft type
   function estimateTime(distance, plane) {
-    let speed = 850; // default km/h for 737
-    if(plane.includes("787") || plane.includes("777")) speed = 900;
+    let speed = 850; // default km/h
+    if(plane.includes("A350") || plane.includes("777") || plane.includes("787")) speed = 900;
     return distance / speed;
   }
 
-  // Format time nicely
   function formatTime(date) {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
 
-  // Format UTC
   function formatUTC(date) {
     return date.toUTCString().match(/\d{2}:\d{2}/)[0] + " UTC";
   }
 
-  // Calculate flight
   function calculateFlight() {
     const dep = departureSelect.value;
     const arr = arrivalSelect.value;
@@ -404,16 +206,14 @@
       <p>Landing (UTC): <strong>${formatUTC(arrivalLocal)}</strong></p>
     `;
   }
-
-
 </script>
 
-</body>
 <section class="disclaimer">
   <p>
-    <strong>Disclaimer:</strong> WestJet Airlines is a virtual GeoFS airline and does not represent the real-life WestJet Airlines Ltd. 
+    <strong>Disclaimer:</strong> Lufthansa Airlines is a virtual GeoFS airline and does not represent the real-life Lufthansa Group. 
     This website and content are intended for entertainment and educational purposes within the virtual flight simulator community.
   </p>
 </section>
 
+</body>
 </html>
