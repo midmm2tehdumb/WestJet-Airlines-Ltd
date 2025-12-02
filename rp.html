@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WestJet Airlines - RP Services</title>
+  <title>Lufthansa Airlines - RP Services</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -189,20 +189,20 @@
 
 <!-- Menu Buttons -->
 <div class="center-button">
-  <button id="openWestern" class="wm-button">Business Western Menu</button>
-  <button id="openAsian" class="wm-button">Business Asian Menu</button>
+  <button id="openBusiness" class="wm-button">Business Menu</button>
+  <button id="openFirst" class="wm-button">First Class Menu</button>
 </div>
 
-<!-- Western Menu Modal -->
+<!-- Business Menu Modal -->
 <div id="westernModal" class="modal">
   <span class="close" id="closeWestern">&times;</span>
-  <img id="westernImage" src="WM.png" alt="Western Menu" style="width:100%; max-height:80vh; object-fit:contain;">
+  <img id="westernImage" src="BM.png" alt="Business Class Menu" style="width:100%; max-height:80vh; object-fit:contain;">
 </div>
 
-<!-- Asian Menu Modal -->
+<!-- First Menu Modal -->
 <div id="asianModal" class="modal">
   <span class="close" id="closeAsian">&times;</span>
-  <img id="asianImage" src="AM.png" alt="Asian Menu" style="width:100%; max-height:80vh; object-fit:contain;">
+  <img id="asianImage" src="FM.png" alt="First Class Menu" style="width:100%; max-height:80vh; object-fit:contain;">
 </div>
 
 
@@ -268,7 +268,7 @@
           <td>Available</td>
         </tr>
       </table>
-      <p>Flights to Asia: all passengers receive main + light meal. Flights to Europe: main + light snack included. Beverages included for both.</p>
+      <p>Flights over 8hrs: all passengers receive main + light meal. Flights over 5hrs: main + light snack included. Beverages included for both.</p>
     </div>
   </div>
 
@@ -311,16 +311,28 @@
     </div>
   </div>
 
-  <!-- Business Class -->
-  <div class="rp-card">
-    <h3>Business Class</h3>
-    <div class="rp-card-content">
-      <p>Experience distinctly Canadian and uniquely WestJet service with exceptional menu offerings, served on dining ware inspired by our Canadian landscapes, plus a selection of Canadian and International wines.</p>
-      <p>Flights within North America: bottle of water, alcoholic/non-alcoholic beverages, light snacks, contemporary Canadian/global meals.</p>
-      <p>Flights to Europe, UK, Japan, Korea: same as above.</p>
-      <p>Relax with individually wrapped pillows, blankets, and Herschel amenity kits.</p>
-    </div>
+<!-- Business Class -->
+<div class="rp-card">
+  <h3>Business Class</h3>
+  <div class="rp-card-content">
+    <p>Experience Lufthansa’s refined service with gourmet menu selections inspired by international cuisine, paired with fine wines and premium beverages.</p>
+    <p>Short- and medium-haul flights: bottle of water, soft drinks, selection of international wines, light snacks, and warm meals.</p>
+    <p>Long-haul flights: multi-course meals crafted by top chefs, extensive wine and champagne selection, and international dessert offerings.</p>
+    <p>Relax in spacious seats with ample legroom, fully reclining for restful sleep, plus Lufthansa amenity kits including pillows, blankets, and premium toiletries.</p>
   </div>
+</div>
+
+<!-- First Class -->
+<div class="rp-card">
+  <h3>First Class</h3>
+  <div class="rp-card-content">
+    <p>Indulge in Lufthansa Allegris First Class, where luxury meets personalized service at every step of your journey.</p>
+    <p>Gourmet à la carte dining with seasonal menus and exclusive wine pairings, available anytime on demand.</p>
+    <p>Access to Lufthansa First Class lounges, private check-in, and dedicated boarding for a seamless experience.</p>
+    <p>Recline fully in spacious suites or lie-flat seats, with plush bedding, premium amenity kits, noise-cancelling headphones, and personalized service from your dedicated cabin crew.</p>
+  </div>
+</div>
+
 </section>
 
 <!-- Seat Selection -->
@@ -328,36 +340,30 @@
   <h2>Seat Selection Services</h2>
   <div class="seat-buttons">
     <button data-seat="economy">Economy Seat</button>
-    <button data-seat="exit-row">Exit Row Seat</button>
-    <button data-seat="extended">Extended Comfort Seat</button>
     <button data-seat="premium">Premium Economy Seat</button>
     <button data-seat="business">Business Class Seat</button>
+    <button data-seat="first">First Class Seat</button>
   </div>
   <div class="seat-info-container">
     <div class="seat-info" id="economy">
       <h3>Economy Seat</h3>
-      <img src="https://www.westjet.com/content/dam/westjet/images/aircraft/cabin/economy/210318-787-interior-560x560.jpg" alt="Economy Seat">
-      <p>Standard seat with basic legroom. Suitable for short-haul flights and everyday travelers.</p>
-    </div>
-    <div class="seat-info" id="exit-row">
-      <h3>Exit Row Seat</h3>
-      <img src="https://i.ytimg.com/vi/pLLlvlutlyI/maxresdefault.jpg" alt="Exit Row Seat">
-      <p>Extra legroom. Passengers seated here may need to assist in an emergency.</p>
-    </div>
-    <div class="seat-info" id="extended">
-      <h3>Extended Comfort Seat</h3>
-      <img src="https://www.westjet.com/content/dam/westjet/images/aircraft/cabin/20240311-extra-leg-room-guest-648x648.jpg" alt="Extended Comfort Seat">
-      <p>Bigger legroom and enhanced comfort for longer flights. Ideal for taller passengers.</p>
+      <img src="https://www.lufthansa.com/content/dam/lh/images/local_images/discover-lufthansa/allegris/economy/Allegris_ECO_Carousel_01.jpg.transform/lh-dcep-transform-width-1440/img.jpg" alt="Economy Seat">
+      <p>Standard seat with basic legroom. Suitable for many flights and everyday travelers.</p>
     </div>
     <div class="seat-info" id="premium">
       <h3>Premium Economy Seat</h3>
-      <img src="https://i.ytimg.com/vi/ewmkMcl1EA4/maxresdefault.jpg" alt="Premium Economy Seat">
+      <img src="https://www.lufthansa.com/content/dam/lh/images/local_images/discover-lufthansa/allegris/premium-economy/Allegris_PE_Carousel_01.jpg.transform/lh-dcep-transform-width-1440/img.jpg" alt="Premium Economy Seat">
       <p>Extra legroom, amenities, and additional comfort. Perfect for longer flights seeking more space.</p>
     </div>
     <div class="seat-info" id="business">
       <h3>Business Class Seat</h3>
-      <img src="https://i.ytimg.com/vi/ndkhu5WoBtM/maxresdefault.jpg" alt="Business Class Seat">
+      <img src="https://www.lufthansa.com/content/dam/lh/images/local_images/discover-lufthansa/allegris/business-class/Allegris_BC_Carousel_01.jpg.transform/lh-dcep-transform-width-1440/img.jpg" alt="Business Class Seat">
       <p>Private, spacious pod-like seat with premium amenities, fine dining, and enhanced privacy.</p>
+    </div>
+     <div class="seat-info" id="first">
+      <h3>First Class Seat</h3>
+      <img src="https://www.lufthansa.com/content/dam/lh/images/local_images/discover-lufthansa/allegris/first-class/Allegris_FC_Carousel_01.jpg.transform/lh-dcep-transform-width-1440/img.jpg" alt="First Class Seat">
+      <p>A suite with full privacy, transformable bed, heatable seats, wardrobe, fine dining, and space for up to two.</p>
     </div>
   </div>
 </section>
@@ -365,7 +371,7 @@
 <!-- Disclaimer -->
 <section class="disclaimer">
   <p>
-    <strong>Disclaimer:</strong> WestJet Airlines is a virtual GeoFS airline and does not represent the real-life WestJet Airlines Ltd. 
+    <strong>Disclaimer:</strong> Lufthansa Airlines is a virtual GeoFS airline and does not represent the real-life Lufthansa Group. 
     This website and content are intended for entertainment and educational purposes within the virtual flight simulator community.
   </p>
 </section>
@@ -393,26 +399,26 @@
     });
   });
 
-// Western Menu
-const openWestern = document.getElementById("openWestern");
-const westernModal = document.getElementById("westernModal");
-const closeWestern = document.getElementById("closeWestern");
+// Business Menu
+const openBusiness = document.getElementById("openBusiness");
+const BusinessModal = document.getElementById("businessModal");
+const closeBusiness = document.getElementById("closeBusiness");
 
-openWestern.onclick = () => { westernModal.style.display = "block"; }
-closeWestern.onclick = () => { westernModal.style.display = "none"; }
+openBusiness.onclick = () => { businessModal.style.display = "block"; }
+closeBusiness.onclick = () => { businessModal.style.display = "none"; }
 
-// Asian Menu
-const openAsian = document.getElementById("openAsian");
-const asianModal = document.getElementById("asianModal");
-const closeAsian = document.getElementById("closeAsian");
+// First Menu
+const openFirst = document.getElementById("openFirst");
+const firstModal = document.getElementById("asianModal");
+const closeFirst = document.getElementById("closeAsian");
 
-openAsian.onclick = () => { asianModal.style.display = "block"; }
-closeAsian.onclick = () => { asianModal.style.display = "none"; }
+openFirst.onclick = () => { firstModal.style.display = "block"; }
+closeFirst.onclick = () => { firstModal.style.display = "none"; }
 
 // Close if clicking outside modal
 window.onclick = (event) => {
-  if (event.target === westernModal) westernModal.style.display = "none";
-  if (event.target === asianModal) asianModal.style.display = "none";
+  if (event.target === businessModal) businessModal.style.display = "none";
+  if (event.target === firstModal) firstModal.style.display = "none";
 };
 
 </script>
