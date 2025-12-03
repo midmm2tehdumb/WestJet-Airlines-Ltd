@@ -1,67 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Lufthansa Destinations</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lufthansa Airlines - Destinations</title>
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
+  body { font-family: Arial, sans-serif; margin:0; padding:0; }
+  #map { height: 80vh; width: 100%; margin-top: 20px; border-radius: 15px; }
+  .leaflet-popup-content button {
+    margin-top: 5px;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .leaflet-popup-content button:hover { background-color: #0085a0; }
 
-#map {
-  height: 90vh;
-  width: 100%;
-  margin-top: 20px;
-  border-radius: 12px;
-}
+  /* Navbar */
+  nav { display: flex; justify-content: space-between; align-items: center; background: #1A3F70; padding: 10px 20px; }
+  nav .logo { color: white; font-size: 1.2em; font-weight: bold; }
+  nav ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
+  nav ul li a { color: white; text-decoration: none; }
+  nav ul li a:hover { text-decoration: underline; }
 
-/* Legend */
-#legend {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: white;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  font-size: 14px;
-}
-#legend div {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.legend-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  margin-right: 8px;
-}
+  /* Legend */
+  #legend { 
+    background: rgba(255,255,255,0.9); 
+    padding: 10px 15px; 
+    position: absolute; 
+    bottom: 30px; 
+    left: 30px; 
+    border-radius: 8px; 
+    font-size: 14px; 
+    z-index: 1000; 
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  }
+  .legend-dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:6px; }
+  
+  /* Disclaimer */
+  .disclaimer { background-color:#1A3F70; color:white; padding:30px; text-align:center; margin-top:20px; }
 </style>
 </head>
-
 <body>
 
-<h2 style="text-align:center;">Lufthansa Group Destinations</h2>
+<!-- Navbar -->
+<nav>
+  <div class="logo">Lufthansa Airlines</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fleet.html">Fleet</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="booking.html">Booking</a></li>
+    <li><a href="info.html">Information</a></li>
+    <li><a href="rp.html">RP</a></li>
+  </ul>
+</nav>
+
+<h2 style="text-align:center; margin-top:20px;">Our Destinations</h2>
 <div id="map"></div>
 
-<!-- LEGEND -->
 <div id="legend">
-  <div><span class="legend-dot" style="background: yellow;"></span>Lufthansa Hub</div>
-  <div><span class="legend-dot" style="background: orange;"></span>Subsidiary Hub</div>
-  <div><span class="legend-dot" style="background: blue;"></span>Destination</div>
-  <div><span class="legend-dot" style="background: red;"></span>Codeshare Destination</div>
+  <div><span class="legend-dot" style="background: #d4b063;"></span>Lufthansa Hub</div>
+  <div><span class="legend-dot" style="background: #d88c6a;"></span>Subsidiary Hub</div>
+  <div><span class="legend-dot" style="background: #6b9ebd;"></span>Destination</div>
+  <div><span class="legend-dot" style="background: #b86b6b;"></span>Codeshare Destination</div>
 </div>
 
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-// ------------------------ MAP INIT ------------------------
-const map = L.map("map").setView([20, 0], 2);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+// -------------------- INITIALIZE MAP --------------------
+const map = L.map('map').setView([20, 0], 2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-// ------------------------ MASTER DATASET ------------------------
+// -------------------- AIRPORT DATA --------------------
 const airportCoords = {
   "FRA": [50.0379, 8.5622],
   "MUC": [48.3538, 11.7861],
@@ -390,30 +406,33 @@ const airportCoords = {
 "PER": [-31.9385, 115.9672]
 };
 
-// ------------------------ HUB LISTS ------------------------
-const hubs = ["FRA", "MUC"]; // Lufthansa hubs = yellow
-const subsidiaryHubs = ["ZRH", "VIE", "BRU", "GVA"]; // Swiss/Austrian/Brussels/etc hubs = orange
-const codeshare = []; // Codeshares = Red
+// Define hub types
+const hubs = ["FRA", "MUC"];
+const subsidiaryHubs = ["ZRH", "VIE", "BRU", "GVA"];
+const codeshare = [];
 
-// ------------------------ DOT LOGIC ------------------------
-function getColor(code) {
-  if (hubs.includes(code)) return "yellow";
-  if (subsidiaryHubs.includes(code)) return "orange";
-  if (codeshare.includes(code)) return "red";
-  return "blue"; // default destination
-}
+// -------------------- DRAW MARKERS --------------------
+Object.keys(airportCoords).forEach(code => {
+  let color = "#6b9ebd"; // default destination
+  if (hubs.includes(code)) color = "#d4b063"; // muted gold
+  else if (subsidiaryHubs.includes(code)) color = "#d88c6a"; // soft orange-brown
+  else if (codeshare.includes(code)) color = "#b86b6b"; // muted red
 
-for (const code in airportCoords) {
-  const [lat, lon] = airportCoords[code];
-
-  L.circleMarker([lat, lon], {
+  L.circleMarker(airportCoords[code], {
     radius: 6,
-    color: getColor(code),
-    fillColor: getColor(code),
+    color: color,
+    fillColor: color,
     fillOpacity: 1
   }).addTo(map).bindPopup(`<b>${code}</b>`);
-}
+});
 </script>
+
+<section class="disclaimer">
+  <p>
+    <strong>Disclaimer:</strong> Lufthansa Airlines is a virtual GeoFS airline and does not represent the real-life Lufthansa Group. 
+    This website and content are intended for entertainment and educational purposes within the virtual flight simulator community.
+  </p>
+</section>
 
 </body>
 </html>
