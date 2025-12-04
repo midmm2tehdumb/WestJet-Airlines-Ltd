@@ -475,12 +475,12 @@
 
   // Suggest plane based on distance (Lufthansa fleet)
   function suggestPlane(distance) {
-    if(distance < 1000) return "A320 / A321 / A319";
-    if(distance < 2500) return "A320 / A321 / A319 / A321XLR";
-    if(distance < 5000) return "A321XLR / A330";
-    if(distance < 8000) return "A330 / 777-9";
-    if(distance < 12000) return "777-9 / 787-9 / A350-900";
-    if(distance < 15000) return "A350-1000XWB / 777-9";
+    if(distance < 1000) return "CRJ-700 / A320 / A321 / A319";
+    if(distance < 6000) return "A320 / A321 / A319";
+    if(distance < 8000) return "A340 / A330";
+    if(distance < 10000) return "A330 / 777 / 787-9 / A350";
+    if(distance < 11000) return "777 / 787-9 / A350";
+    if(distance < 16500) return "A350-1000XWB 240 seat configuration";
     return "Too far. Choose another route.";
   }
 
