@@ -500,61 +500,97 @@ nav ul.nav-links li a:hover {
   margin-left: 0;         /* optional, remove extra space */
 }
 
-/* Button */
-.open-btn {
-    padding: 12px 20px;
+/* ===== GALLERY BUTTON ===== */
+.gallery-btn {
+    width: 100%;
+    max-width: 650px; /* match disclaimer width */
+    height: 100px; /* 2x taller */
+    font-size: 1.6rem;
+    font-weight: 600;
     background: #001a57; /* Lufthansa blue */
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 14px;
+    display: block;
+    margin: 40px auto;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-/* Modal background */
+.gallery-btn:hover {
+    background: #00247a;
+}
+
+
+/* ===== MODAL OVERLAY ===== */
 .modal {
     display: none;
     position: fixed;
+    inset: 0;
     z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(5px);
-    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.45);
 }
 
-/* Popup box */
+
+/* ===== POPUP BOX ===== */
 .modal-content {
-    background: #fff;
+    background: white;
     margin: 80px auto;
-    padding: 20px;
-    width: 80%;
+    padding: 25px;
+    width: 85%;
     max-width: 900px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     animation: fadeIn 0.3s ease;
 }
 
-/* Close button */
-.close {
-    float: right;
-    font-size: 28px;
-    cursor: pointer;
+/* Fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-/* Tabs (Widebody / Narrowbody) */
+
+/* ===== CLOSE BUTTON ===== */
+.close {
+    float: right;
+    font-size: 32px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #444;
+}
+
+.close:hover {
+    color: #000;
+}
+
+
+/* ===== DM NOTE ===== */
+.dm-note {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    opacity: 0.7;
+}
+
+
+/* ===== TABS ===== */
 .tab-buttons {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
 .tab-btn {
-    padding: 10px 20px;
+    padding: 12px 22px;
+    background: #e5e5e5;
     border: none;
-    background: #e0e0e0;
+    border-radius: 10px;
     cursor: pointer;
-    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.2s;
 }
 
 .tab-btn.active {
@@ -562,7 +598,8 @@ nav ul.nav-links li a:hover {
     color: white;
 }
 
-/* Pages */
+
+/* ===== TAB PAGES ===== */
 .tab-page {
     display: none;
 }
@@ -571,7 +608,8 @@ nav ul.nav-links li a:hover {
     display: block;
 }
 
-/* Scrollable gallery area */
+
+/* ===== SCROLL GALLERY ===== */
 .scroll-gallery {
     display: flex;
     gap: 20px;
@@ -582,10 +620,6 @@ nav ul.nav-links li a:hover {
 .scroll-gallery img {
     height: 180px;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.open-btn {
-    display: block;
-    margin: 40px auto; /* centers it horizontally */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    flex-shrink: 0;
 }
