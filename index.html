@@ -46,41 +46,53 @@
   </video>
 </section>
 
-<!-- Button that opens the popup -->
-<button id="openGallery" class="open-btn">Open Fleet Gallery</button>
+<!-- ===== GALLERY BUTTON ===== -->
+<button class="gallery-btn" id="openGalleryBtn">
+    Open Gallery
+</button>
 
-<!-- Modal Popup -->
-<div id="fleetModal" class="modal">
+
+<!-- ===== POPUP MODAL ===== -->
+<div id="galleryModal" class="modal">
+
     <div class="modal-content">
-        <span class="close">&times;</span>
 
+        <span class="close" id="closeGallery">&times;</span>
+
+        <p class="dm-note">
+            DM <strong>midmm2</strong> on Discord to upload an image.
+        </p>
+
+        <!-- Tabs -->
         <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="widebody">Widebody</button>
-            <button class="tab-btn" data-tab="narrowbody">Narrowbody</button>
+            <button class="tab-btn active" data-tab="narrow">Narrowbody</button>
+            <button class="tab-btn" data-tab="wide">Widebody</button>
         </div>
 
-        <!-- Widebody Gallery -->
-        <div class="tab-page active" id="widebody">
+        <!-- Narrowbody Page -->
+        <div id="narrow" class="tab-page active">
             <div class="scroll-gallery">
-                <img src="images/747-8.jpg" alt="747-8">
-                <img src="images/a350.jpg" alt="A350">
-                <img src="images/787.jpg" alt="787-9">
-                <!-- Add more -->
+                <img src="images/narrow1.jpg">
+                <img src="images/narrow2.jpg">
+                <img src="images/narrow3.jpg">
             </div>
         </div>
 
-        <!-- Narrowbody Gallery -->
-        <div class="tab-page" id="narrowbody">
+        <!-- Widebody Page -->
+        <div id="wide" class="tab-page">
             <div class="scroll-gallery">
-                <img src="images/a320neo.jpg" alt="A320neo">
-                <img src="images/a321.jpg" alt="A321">
-                <img src="images/737max.jpg" alt="737 MAX">
-                <!-- Add more -->
+                <img src="images/wide1.jpg">
+                <img src="images/wide2.jpg">
+                <img src="images/wide3.jpg">
             </div>
         </div>
 
     </div>
+
 </div>
+
+
+
 
 
 <!-- Disclaimer / Terms Block -->
@@ -108,43 +120,32 @@ window.addEventListener('scroll', checkVideoInView);
 window.addEventListener('resize', checkVideoInView);
 window.addEventListener('load', checkVideoInView);
 
-// Modal Elements
-const modal = document.getElementById("fleetModal");
-const openBtn = document.getElementById("openGallery");
-const closeBtn = document.querySelector(".close");
-const tabButtons = document.querySelectorAll(".tab-btn");
-const tabPages = document.querySelectorAll(".tab-page");
+<!-- ===== JS ===== -->
+    const openBtn = document.getElementById("openGalleryBtn");
+    const modal = document.getElementById("galleryModal");
+    const closeBtn = document.getElementById("closeGallery");
 
-// Open popup
-openBtn.onclick = () => {
-    modal.style.display = "block";
-};
+    const tabs = document.querySelectorAll(".tab-btn");
+    const pages = document.querySelectorAll(".tab-page");
 
-// Close popup (X button)
-closeBtn.onclick = () => {
-    modal.style.display = "none";
-};
+    openBtn.onclick = () => modal.style.display = "block";
+    closeBtn.onclick = () => modal.style.display = "none";
 
-// Close when clicking outside the popup
-window.onclick = (e) => {
-    if (e.target === modal) {
-        modal.style.display = "none";
-    }
-};
+    window.onclick = (e) => {
+        if (e.target === modal) modal.style.display = "none";
+    };
 
-// Tab switching
-tabButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        document.querySelector(".tab-btn.active").classList.remove("active");
-        btn.classList.add("active");
+    tabs.forEach(btn => {
+        btn.onclick = () => {
+            tabs.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
 
-        const tabId = btn.dataset.tab;
-
-        tabPages.forEach(page => {
-            page.classList.toggle("active", page.id === tabId);
-        });
+            let target = btn.dataset.tab;
+            pages.forEach(p => p.classList.remove("active"));
+            document.getElementById(target).classList.add("active");
+        };
     });
-});
+
 
 </script>
 
