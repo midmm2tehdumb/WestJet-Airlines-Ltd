@@ -622,7 +622,6 @@ nav ul.nav-links li a:hover {
 /* Images in vertical scroll */
 .scroll-gallery img {
     width: 100%;              /* fill horizontal width */
-    height: 180px;            /* fixed height */
     object-fit: cover;        /* crop sides evenly */
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
