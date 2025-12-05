@@ -500,3 +500,87 @@ nav ul.nav-links li a:hover {
   margin-left: 0;         /* optional, remove extra space */
 }
 
+/* Button */
+.open-btn {
+    padding: 12px 20px;
+    background: #001a57; /* Lufthansa blue */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Popup box */
+.modal-content {
+    background: #fff;
+    margin: 80px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+/* Close button */
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Tabs (Widebody / Narrowbody) */
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: #e0e0e0;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.tab-btn.active {
+    background: #001a57;
+    color: white;
+}
+
+/* Pages */
+.tab-page {
+    display: none;
+}
+
+.tab-page.active {
+    display: block;
+}
+
+/* Scrollable gallery area */
+.scroll-gallery {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.scroll-gallery img {
+    height: 180px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
