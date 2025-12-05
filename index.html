@@ -46,6 +46,43 @@
   </video>
 </section>
 
+<!-- Button that opens the popup -->
+<button id="openGallery" class="open-btn">Open Fleet Gallery</button>
+
+<!-- Modal Popup -->
+<div id="fleetModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="widebody">Widebody</button>
+            <button class="tab-btn" data-tab="narrowbody">Narrowbody</button>
+        </div>
+
+        <!-- Widebody Gallery -->
+        <div class="tab-page active" id="widebody">
+            <div class="scroll-gallery">
+                <img src="images/747-8.jpg" alt="747-8">
+                <img src="images/a350.jpg" alt="A350">
+                <img src="images/787.jpg" alt="787-9">
+                <!-- Add more -->
+            </div>
+        </div>
+
+        <!-- Narrowbody Gallery -->
+        <div class="tab-page" id="narrowbody">
+            <div class="scroll-gallery">
+                <img src="images/a320neo.jpg" alt="A320neo">
+                <img src="images/a321.jpg" alt="A321">
+                <img src="images/737max.jpg" alt="737 MAX">
+                <!-- Add more -->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 <!-- Disclaimer / Terms Block -->
 <section class="disclaimer" style="background-color:#00235f; color:white; padding:30px; text-align:center; margin-top:50px;">
   <p>
