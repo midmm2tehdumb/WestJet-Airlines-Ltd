@@ -107,6 +107,43 @@ function checkVideoInView() {
 window.addEventListener('scroll', checkVideoInView);
 window.addEventListener('resize', checkVideoInView);
 window.addEventListener('load', checkVideoInView);
+
+// Modal Elements
+const modal = document.getElementById("fleetModal");
+const openBtn = document.getElementById("openGallery");
+const closeBtn = document.querySelector(".close");
+const tabButtons = document.querySelectorAll(".tab-btn");
+const tabPages = document.querySelectorAll(".tab-page");
+
+// Open popup
+openBtn.onclick = () => {
+    modal.style.display = "block";
+};
+
+// Close popup (X button)
+closeBtn.onclick = () => {
+    modal.style.display = "none";
+};
+
+// Close when clicking outside the popup
+window.onclick = (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+};
+
+// Tab switching
+tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelector(".tab-btn.active").classList.remove("active");
+        btn.classList.add("active");
+
+        const tabId = btn.dataset.tab;
+
+        tabPages.forEach(page => {
+            page.classList.toggle("active", page.id === tabId);
+        });
+
 </script>
 
 </body>
