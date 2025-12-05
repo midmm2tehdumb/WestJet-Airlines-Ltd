@@ -613,7 +613,6 @@ nav ul.nav-links li a:hover {
     display: flex;
     flex-direction: column;   /* stack images vertically */
     gap: 20px;                /* space between images */
-    max-height: 500px;        /* height of scroll area */
     overflow-y: auto;         /* vertical scroll */
     width: 100%;
     padding: 10px 0;
