@@ -107,7 +107,7 @@
 </section>
 
 <script>
-// Auto-play video when scrolled into view
+// ===== Auto-play video =====
 const video = document.getElementById('adVideo');
 
 function checkVideoInView() {
@@ -123,7 +123,7 @@ window.addEventListener('scroll', checkVideoInView);
 window.addEventListener('resize', checkVideoInView);
 window.addEventListener('load', checkVideoInView);
 
-/* ===== FULLSCREEN IMAGE MODAL ===== */
+// ===== FULLSCREEN IMAGE MODAL =====
 const imageModal = document.getElementById('imageModal');
 const fullImage = document.getElementById('fullImage');
 const imageModalClose = imageModal.querySelector('.close');
@@ -138,7 +138,7 @@ document.querySelectorAll('.gallery-img').forEach(img => {
 imageModalClose.onclick = () => imageModal.style.display = 'none';
 imageModal.onclick = (e) => { if(e.target === imageModal) imageModal.style.display = 'none'; };
 
-/* ===== GALLERY MODAL (Tabbed) ===== */
+// ===== GALLERY MODAL (Tabbed) =====
 const openGalleryBtn = document.getElementById("openGalleryBtn");
 const galleryModal = document.getElementById("galleryModal");
 const galleryCloseBtn = document.getElementById("closeGallery");
@@ -150,9 +150,9 @@ const pages = document.querySelectorAll(".tab-page");
 openGalleryBtn.onclick = () => galleryModal.style.display = "block";
 galleryCloseBtn.onclick = () => galleryModal.style.display = "none";
 
-// Close modal when clicking outside
+// Close gallery modal when clicking outside
 window.addEventListener('click', (e) => {
-    if(e.target === galleryModal) galleryModal.style.display = "none";
+    if(e.target === galleryModal) galleryModal.style.display = 'none';
 });
 
 // Tab switching
@@ -167,6 +167,7 @@ tabs.forEach(btn => {
     };
 });
 </script>
+
 
 </body>
 </html>
