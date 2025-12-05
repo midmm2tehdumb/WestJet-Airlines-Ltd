@@ -608,18 +608,25 @@ nav ul.nav-links li a:hover {
     display: block;
 }
 
-
-/* ===== SCROLL GALLERY ===== */
+/* Scrollable gallery */
 .scroll-gallery {
     display: flex;
-    gap: 20px;
+    gap: 0; /* no gaps so images connect cleanly */
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
     padding-bottom: 10px;
+    width: 100%;
 }
 
+/* Individual images */
 .scroll-gallery img {
-    height: 180px;
+    height: 180px;              /* fixed height */
+    width: auto;                 /* let width scale naturally */
+    object-fit: cover;           /* crop sides evenly */
+    object-position: center;     /* center crop perfectly */
+    flex-shrink: 0;              /* prevent squeezing */
+    scroll-snap-align: start;    /* smooth snap scrolling */
     border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    flex-shrink: 0;
+    margin-right: 20px;          /* spacing between images */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
