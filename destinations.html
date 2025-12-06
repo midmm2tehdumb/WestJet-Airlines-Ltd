@@ -401,13 +401,18 @@ const airportCoords = {
 "CAN": [23.1291, 113.2644],
  "CKG": [29.5630, 106.5516],
  "TPE": [25.0478, 121.5320],
- "HGH": [30.2741, 120.1551]
-};
+ "HGH": [30.2741, 120.1551],
+ "CGK": [-6.1256, 106.656],
+ "SGN": [10.8188, 106.652],
+ "HKT": [8.1132, 98.3169],
+ "DAD": [16.0439, 108.199],
+ "SAI": [13.369167, 104.223056],
+ "KTI": [11.36, 104.92]
 
 // Define hub types
 const hubs = ["FRA", "MUC"];
 const subsidiaryHubs = ["ZRH", "VIE", "BRU", "GVA"];
-const codeshare = ["CAN", "CKG", "TPE", "HGH"];
+const codeshare = ["CAN", "CKG", "TPE", "HGH", "CGK", "SGN", "HKT", "DAD", "SAI", "KTI"];
 
 // -------------------- DRAW MARKERS --------------------
 Object.keys(airportCoords).forEach(code => {
