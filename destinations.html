@@ -125,6 +125,7 @@
   <div class="codeshare-cards">
     <div class="codeshare-card" data-modal="singaporeModal">Singapore Airlines</div>
     <div class="codeshare-card" data-modal="cathayModal">Cathay Pacific</div>
+    <div class="codeshare-card" data-modal="indigoModal">Indigo Airlines</div>
   </div>
 </section>
 
@@ -141,6 +142,14 @@
     <span class="close-btn">&times;</span>
     <h3>Cathay Pacific</h3>
     <p>HKG-CKG, HKG-CAN, HKG-TPE, HKG-HGH</p>
+  </div>
+</div>
+
+<div id="indigoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h3>Indigo Airlines</h3>
+    <p>DEL/BOM-AGR, DEL/BOM-JAI, VDEL/BOM-NS, DEL/BOM-GOI, DEL/BOM-COK</p>
   </div>
 </div>
 
@@ -366,13 +375,18 @@ const airportCoords = {
   "HKT": [8.1132, 98.3169],
   "DAD": [16.0439, 108.199],
   "SAI": [13.369167, 104.223056],
-  "KTI": [11.36, 104.92] 
+  "KTI": [11.36, 104.92],
+  "AGR": [27.1558, 77.9609],
+  "JAI": [26.8242, 75.8122],
+  "VNS": [25.4521, 82.8586],
+  "GOI": [15.3808, 73.8314],
+  "COK": [10.1520, 76.4019]
 };
 
 // Define hub types
 const hubs = ["FRA", "MUC"];
 const subsidiaryHubs = ["ZRH", "VIE", "BRU", "GVA"];
-const codeshare = ["CAN", "CKG", "TPE", "HGH", "CGK", "SGN", "HKT", "DAD", "SAI", "KTI"];
+const codeshare = ["CAN", "CKG", "TPE", "HGH", "CGK", "SGN", "HKT", "DAD", "SAI", "KTI", "AGR", "JAI", "VNS", "GOI", "COK"];
 
 // -------------------- DRAW MARKERS --------------------
 Object.keys(airportCoords).forEach(code => {
