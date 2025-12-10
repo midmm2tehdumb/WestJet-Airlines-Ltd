@@ -127,6 +127,7 @@
     <div class="codeshare-card" data-modal="singaporeModal">Singapore Airlines</div>
     <div class="codeshare-card" data-modal="cathayModal">Cathay Pacific</div>
     <div class="codeshare-card" data-modal="indigoModal">Indigo Airlines</div>
+    <div class="codeshare-card" data-modal="starluxModal">Starlux Airlines</div>
   </div>
 </section>
 
@@ -151,6 +152,14 @@
     <span class="close-btn">&times;</span>
     <h3>Indigo Airlines</h3>
     <p>DEL/BOM-AGR, DEL/BOM-JAI, VDEL/BOM-NS, DEL/BOM-GOI, DEL/BOM-COK</p>
+  </div>
+</div>
+
+<div id="starluxModal" class  ="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h3>Starlux Airlines</h3>
+    <p>FRA/MUC-TPE, FRA/MUC-TSA</p>
   </div>
 </div>
 
@@ -517,6 +526,8 @@ const airportData = {
 
   "STR": {icao: "EDDS", city: "Stuttgart"},
 
+  "TSA": {icao: "RCSS", city: "Taipei (Songshan)"},
+
   "TLL": {icao: "EETN", city: "Tallinn"},
 
   "IKA": {icao: "OIIE", city: "Tehran"},
@@ -617,6 +628,7 @@ Object.keys(airportData).forEach(code => {
       "TOS": [69.6828, 18.9181], 
       "TRD": [63.4571, 10.9241], 
       "TUN": [36.8510, 10.2273], 
+      "TSA": [25.0694, 121.5520], 
       "VLC": [39.4897, -0.4819], 
       "YVR": [49.1936, -123.1836], 
       "VAR": [43.2076, 27.8251], 
@@ -659,9 +671,9 @@ Object.keys(airportData).forEach(code => {
 const hubs = ["FRA", "MUC"];
 const subsidiaryHubs = ["ZRH", "VIE", "BRU", "GVA"];
 
-const codeshare = ["CAN", "CKG", "TPE", "HGH", "CGK", "SGN", "HKT", "DAD", "SAI", "KTI", "AGR", "JAI", "VNS", "GOI", "COK"]; 
+const codeshare = ["CAN", "CKG", "TPE", "HGH", "CGK", "SGN", "HKT", "DAD", "SAI", "KTI", "AGR", "JAI", "VNS", "GOI", "COK", "TSA"]; 
 
-const outOfService = ["TLV", "DAM", "BEY", "AMM", "EBL", "IKA", "KBP", "DME",]; 
+const outOfService = ["TLV", "DAM", "BEY", "AMM", "EBL", "IKA", "KBP", "DME"]; 
 
 // -------------------- DRAW MARKERS --------------------
 Object.keys(airportCoords).forEach(code => {
