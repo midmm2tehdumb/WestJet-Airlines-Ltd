@@ -191,14 +191,14 @@
             }
             
             // 3. LOW SPEED/GROUND TIME: Applies to all long flights
-            var ADDED_TIME_FOR_LOW_SPEED = 0.3; // 18 minutes fixed buffer
+            var ADDED_TIME_FOR_LOW_SPEED = 0.4; // 24 minutes fixed buffer
             
         } else {
             // --- SHORT HAUL LOGIC (Less than ~4500 km) ---
             adjustedDistance = distance * ROUTING_FACTOR_SHORT_HAUL;
             
             // Short Haul: Fixed buffer is much larger relative to flight time.
-            var ADDED_TIME_FOR_LOW_SPEED = 0.4; // 24 minutes fixed buffer
+            var ADDED_TIME_FOR_LOW_SPEED = 0.5; // 24 minutes fixed buffer
         }
 
         // Phase 2: Cruise Speed & Altitude
