@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,21 +41,18 @@
     </div>
 
     <div id="results"></div>
-</main>
 
-<section class="disclaimer">
-    <p>
-        <strong>Disclaimer:</strong> Lufthansa Airlines is a virtual GeoFS airline and does not represent the real-life Lufthansa Group. 
-        This website and content are intended for entertainment and educational purposes within the virtual flight simulator community.
-    </p>
-</section>
-
+    <section class="disclaimer">
+        <p>
+            <strong>Disclaimer:</strong> Lufthansa Airlines is a virtual GeoFS airline and does not represent the real-life Lufthansa Group. 
+            This website and content are intended for entertainment and educational purposes within the virtual flight simulator community.
+        </p>
+    </section>
 </main>
 
 
 <script>
     // --- START: AIRPORT DATA (Used to calculate distance) ---
-    // Ensure all airport entries are correctly formatted with a comma after each list:
     const airportCoords = {
         "FRA": [50.0379, 8.5622], "MUC": [48.3538, 11.7861], "ABV": [9.0060, 7.2636], "AUH": [24.4321, 54.6516],
         "ALC": [38.2822, -0.5581], "ALG": [36.6911, 3.2158], "ALA": [43.3521, 77.0403], "AMM": [31.7226, 35.9935],
@@ -107,7 +105,7 @@
         "WAW": [52.1657, 20.9671], "IAD": [38.9444, -77.4558], "GWT": [54.9136, 8.3475], "WRO": [51.1020, 17.0304],
         "WBG": [49.8106, 9.9425], "ZAD": [44.1086, 15.3467], "ZAG": [45.7420, 16.0680], "ZTH": [37.7500, 20.8842],
         "ZRH": [47.4581, 8.5492], 
-        "PER": [-31.9385, 115.9672] // <-- NOTE: NO COMMA HERE
+        "PER": [-31.9385, 115.9672] // NOTE: NO COMMA HERE
     };
     // --- END: AIRPORT DATA ---
 
@@ -115,109 +113,26 @@
     const departureSelect = document.getElementById('departure');
     const arrivalSelect = document.getElementById('arrival');
 
-  // Estimate flight time with enhanced ground/low-altitude padding for short-haul realism
-function estimateTime(distance, depCoord, arrCoord, plane) {
-    // --- Configuration Constants ---
-    const R_KTS_TO_KMH = 1.852; 
-    const R_FT_TO_KM = 0.0003048;
+    // Function to populate dropdowns
+    function populateAirports() {
+        departureSelect.innerHTML = '<option value="">-- Select Departure --</option>';
+        arrivalSelect.innerHTML = '<option value="">-- Select Arrival --</option>';
+        
+        Object.keys(airportCoords).sort().forEach(code => {
+            const option1 = document.createElement('option');
+            option1.value = code;
+            option1.textContent = code;
+            departureSelect.appendChild(option1);
 
-    // --- REALISM FACTORS ---
-    
-    // 1. ROUTING FACTOR: Accounts for non-Great Circle routing (Airways, ATC, etc.)
-    const ROUTING_FACTOR_LONG_HAUL = 1.08; // 8% for long routes
-    const ROUTING_FACTOR_SHORT_HAUL = 1.15; // Increased to 15% for complex short routes (e.g., holding)
-    
-    let adjustedDistance;
-
-    // Determine the general direction based on longitude change
-    const lonDifference = depCoord[1] - arrCoord[1];
-    const isWestbound = lonDifference > 0; 
-    const isEastbound = lonDifference < 0; 
-    
-    let WIND_FACTOR = 1.0; 
-    
-    // Check if it's a long haul flight (greater than ~4500 km)
-    if (distance > 4500) { 
-        adjustedDistance = distance * ROUTING_FACTOR_LONG_HAUL;
-        
-        // 2. WIND FACTOR (Long Haul)
-        if (isWestbound && Math.abs(lonDifference) > 10) { 
-            WIND_FACTOR = 1.08; // Headwind penalty
-        } else if (isEastbound && Math.abs(lonDifference) > 10) {
-            WIND_FACTOR = 0.94; // Tailwind benefit
-        } else { 
-            WIND_FACTOR = 1.02; // North/South minor penalty
-        }
-        
-        // 3. LOW SPEED/GROUND TIME: Applies to all long flights
-        var ADDED_TIME_FOR_LOW_SPEED = 0.3; // 18 minutes fixed buffer
-        
-    } else {
-        // --- SHORT HAUL LOGIC (Less than ~4500 km) ---
-        adjustedDistance = distance * ROUTING_FACTOR_SHORT_HAUL;
-        
-        // Short Haul: Fixed buffer is much larger relative to flight time.
-        // 0.4 hours = 24 minutes. This compensates for slow taxi, takeoff queue, and low-altitude climb/descent.
-        var ADDED_TIME_FOR_LOW_SPEED = 0.4; 
+            const option2 = document.createElement('option');
+            option2.value = code;
+            option2.textContent = code;
+            arrivalSelect.appendChild(option2);
+        });
     }
 
-    // Phase 2: Cruise Speed & Altitude
-    let cruiseSpeed = 820; // default km/h (short/medium haul)
-    let cruiseAltitude = 7; // default 7km (FL230)
-    
-    if (adjustedDistance > 4500) { 
-        cruiseSpeed = 870; 
-        cruiseAltitude = 11; // 11km (FL360)
-    }
-
-    // --- Calculation ---
-    const ALTITUDE_5K_KM = 5000 * R_FT_TO_KM; // Use 5km (FL160) as a lower transition point for short haul
-    const SPEED_BELOW_5K_KMH = 350 * R_KTS_TO_KMH; // Slightly faster below 5km
-    const CLIMB_RATE_KMH = (1000 * R_FT_TO_KM) * 60; 
-    const DESCENT_RATE_KMH = (1500 * R_FT_TO_KM) * 60; 
-    const AVG_DESCENT_SPEED_KMH = 550; 
-    const AVG_CLIMB_ABOVE_5K_KMH = 650; // Use a reasonable climbing speed
-
-    // 1. CLIMB (Split based on 5km transition)
-    const timeTo5K = ALTITUDE_5K_KM / CLIMB_RATE_KMH;
-    const distTo5K = timeTo5K * SPEED_BELOW_5K_KMH;
-
-    const remainingClimbAlt = Math.max(0, cruiseAltitude - ALTITUDE_5K_KM);
-    const timeAbove5K = remainingClimbAlt / CLIMB_RATE_KMH;
-    const distAbove5K = timeAbove5K * AVG_CLIMB_ABOVE_5K_KMH;
-
-    const totalClimbTime = timeTo5K + timeAbove5K;
-    const totalClimbDist = distTo5K + distAbove5K;
-
-    // 2. DESCENT
-    const totalDescentTime = cruiseAltitude / DESCENT_RATE_KMH;
-    const totalDescentDist = totalDescentTime * AVG_DESCENT_SPEED_KMH;
-
-    // 3. CRUISE
-    const cruiseDist = adjustedDistance - totalClimbDist - totalDescentDist;
-    let cruiseTime = 0;
-
-    if (cruiseDist > 0) {
-        cruiseTime = cruiseDist / cruiseSpeed;
-    } else {
-        // Very short flight (less distance than climb/descent profiles): simple average speed
-        const avgSpeed = (SPEED_BELOW_5K_KMH + cruiseSpeed) / 2;
-        let time = (adjustedDistance / avgSpeed) + ADDED_TIME_FOR_LOW_SPEED;
-        return time * WIND_FACTOR;
-    }
-
-    // 4. TOTAL TIME
-    let finalTime = totalClimbTime + cruiseTime + totalDescentTime + ADDED_TIME_FOR_LOW_SPEED;
-    
-    return finalTime * WIND_FACTOR;
-}
-    }
-
-    // --- FIX: The function must be called here to populate the dropdowns immediately on page load ---
-    if (Object.keys(airportCoords).length > 0) {
-        populateAirports();
-    } 
-    // If you remove the if statement, the line should simply be: populateAirports();
+    // Call the function to populate the dropdowns immediately on page load
+    populateAirports();
 
 
     // Haversine formula to calculate distance (Unchanged)
@@ -241,73 +156,78 @@ function estimateTime(distance, depCoord, arrCoord, plane) {
         return "Too far. Choose another route.";
     }
 
-    // Estimate flight time with aggressive factors for simulation/block time (Tuned for ~15-20 min padding)
+    // Estimate flight time with enhanced ground/low-altitude padding for short-haul realism (THE CORRECT LOGIC)
     function estimateTime(distance, depCoord, arrCoord, plane) {
         // --- Configuration Constants ---
         const R_KTS_TO_KMH = 1.852; 
         const R_FT_TO_KM = 0.0003048;
 
-        // --- REALISM FACTORS (Tuned for 7h 15m - 7h 25m) ---
+        // --- REALISM FACTORS ---
         
         // 1. ROUTING FACTOR: Accounts for non-Great Circle routing (Airways, ATC, etc.)
-        const ROUTING_FACTOR = 1.08; // 8% increase
-        const adjustedDistance = distance * ROUTING_FACTOR; 
+        const ROUTING_FACTOR_LONG_HAUL = 1.08; // 8% for long routes
+        const ROUTING_FACTOR_SHORT_HAUL = 1.15; // Increased to 15% for complex short routes
+        
+        let adjustedDistance;
 
-        // 2. WIND FACTOR: Accounts for strong headwinds/tailwinds on long routes.
+        // Determine the general direction based on longitude change
         const lonDifference = depCoord[1] - arrCoord[1];
-        const latDifference = depCoord[0] - arrCoord[0];
-        const isWestbound = lonDifference > 0; // Departure longitude > Arrival longitude
+        const isWestbound = lonDifference > 0; 
         const isEastbound = lonDifference < 0; 
         
         let WIND_FACTOR = 1.0; 
         
-        if (adjustedDistance > 4500) { 
-            // A. WESTBOUND (Strong Headwind Penalty)
+        // Check if it's a long haul flight (greater than ~4500 km)
+        if (distance > 4500) { 
+            adjustedDistance = distance * ROUTING_FACTOR_LONG_HAUL;
+            
+            // 2. WIND FACTOR (Long Haul)
             if (isWestbound && Math.abs(lonDifference) > 10) { 
-                WIND_FACTOR = 1.08; 
-            } 
-            
-            // B. EASTBOUND (Tailwind Benefit - Faster)
-            else if (isEastbound && Math.abs(lonDifference) > 10) {
-                WIND_FACTOR = 0.94; 
+                WIND_FACTOR = 1.08; // Headwind penalty
+            } else if (isEastbound && Math.abs(lonDifference) > 10) {
+                WIND_FACTOR = 0.94; // Tailwind benefit
+            } else { 
+                WIND_FACTOR = 1.02; // North/South minor penalty
             }
             
-            // C. NORTH/SOUTH (Neutral Wind)
-            else { 
-                WIND_FACTOR = 1.02; 
-            }
+            // 3. LOW SPEED/GROUND TIME: Applies to all long flights
+            var ADDED_TIME_FOR_LOW_SPEED = 0.3; // 18 minutes fixed buffer
+            
+        } else {
+            // --- SHORT HAUL LOGIC (Less than ~4500 km) ---
+            adjustedDistance = distance * ROUTING_FACTOR_SHORT_HAUL;
+            
+            // Short Haul: Fixed buffer is much larger relative to flight time.
+            var ADDED_TIME_FOR_LOW_SPEED = 0.4; // 24 minutes fixed buffer
         }
-        
-        // 3. LOW SPEED/GROUND TIME: Accounts for taxi, approach, and holding.
-        const ADDED_TIME_FOR_LOW_SPEED = 0.3; // 18 minutes fixed buffer
 
-        // Phase 2: Cruise Speed (Conservative for simulation)
+        // Phase 2: Cruise Speed & Altitude
         let cruiseSpeed = 820; // default km/h (short/medium haul)
-        let cruiseAltitude = 7; 
+        let cruiseAltitude = 7; // default 7km (FL230)
         
         if (adjustedDistance > 4500) { 
-            cruiseSpeed = 870; // Slower cruise for block time padding
-            cruiseAltitude = 11; 
+            cruiseSpeed = 870; 
+            cruiseAltitude = 11; // 11km (FL360)
         }
 
         // --- Calculation ---
-        const ALTITUDE_10K_KM = 10000 * R_FT_TO_KM; 
-        const SPEED_BELOW_10K_KMH = 250 * R_KTS_TO_KMH; 
+        const ALTITUDE_5K_KM = 5000 * R_FT_TO_KM; // Use 5km (FL160) as a lower transition point for better realism
+        const SPEED_BELOW_5K_KMH = 350 * R_KTS_TO_KMH; 
         const CLIMB_RATE_KMH = (1000 * R_FT_TO_KM) * 60; 
         const DESCENT_RATE_KMH = (1500 * R_FT_TO_KM) * 60; 
         const AVG_DESCENT_SPEED_KMH = 550; 
-        const AVG_CLIMB_ABOVE_10K_KMH = 600; 
+        const AVG_CLIMB_ABOVE_5K_KMH = 650; 
 
-        // 1. CLIMB
-        const timeTo10K = ALTITUDE_10K_KM / CLIMB_RATE_KMH;
-        const distTo10K = timeTo10K * SPEED_BELOW_10K_KMH;
+        // 1. CLIMB (Split based on 5km transition)
+        const timeTo5K = ALTITUDE_5K_KM / CLIMB_RATE_KMH;
+        const distTo5K = timeTo5K * SPEED_BELOW_5K_KMH;
 
-        const remainingClimbAlt = Math.max(0, cruiseAltitude - ALTITUDE_10K_KM);
-        const timeAbove10K = remainingClimbAlt / CLIMB_RATE_KMH;
-        const distAbove10K = timeAbove10K * AVG_CLIMB_ABOVE_10K_KMH;
+        const remainingClimbAlt = Math.max(0, cruiseAltitude - ALTITUDE_5K_KM);
+        const timeAbove5K = remainingClimbAlt / CLIMB_RATE_KMH;
+        const distAbove5K = timeAbove5K * AVG_CLIMB_ABOVE_5K_KMH;
 
-        const totalClimbTime = timeTo10K + timeAbove10K;
-        const totalClimbDist = distTo10K + distAbove10K;
+        const totalClimbTime = timeTo5K + timeAbove5K;
+        const totalClimbDist = distTo5K + distAbove5K;
 
         // 2. DESCENT
         const totalDescentTime = cruiseAltitude / DESCENT_RATE_KMH;
@@ -320,8 +240,8 @@ function estimateTime(distance, depCoord, arrCoord, plane) {
         if (cruiseDist > 0) {
             cruiseTime = cruiseDist / cruiseSpeed;
         } else {
-            // Very short flight: simple average speed
-            const avgSpeed = (SPEED_BELOW_10K_KMH + cruiseSpeed) / 2;
+            // Very short flight (less distance than climb/descent profiles): simple average speed
+            const avgSpeed = (SPEED_BELOW_5K_KMH + cruiseSpeed) / 2;
             let time = (adjustedDistance / avgSpeed) + ADDED_TIME_FOR_LOW_SPEED;
             return time * WIND_FACTOR;
         }
