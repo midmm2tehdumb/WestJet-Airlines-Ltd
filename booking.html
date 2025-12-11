@@ -23,7 +23,7 @@
 </nav>
 
 <main>
-    <h2>Book Your Flight</h2>
+    <h2 class="centered-heading">Booking Form</h2> 
 
     <div class="booking-form">
         <label for="departure">Departure Airport (3-Letter IATA):</label>
@@ -50,7 +50,7 @@
 </section>
 
 <script>
-    // --- START: AIRPORT DATA (Unchanged) ---
+    // --- START: AIRPORT DATA ---
     const airportCoords = {
         "FRA": [50.0379, 8.5622],
         "MUC": [48.3538, 11.7861],
@@ -308,52 +308,49 @@
         return "Too far. Choose another route.";
     }
 
-    // Estimate flight time with aggressive factors for simulation/block time (Unchanged Logic)
+    // Estimate flight time with aggressive factors for simulation/block time (Ensures longer, realistic block time)
     function estimateTime(distance, depCoord, arrCoord, plane) {
         // --- Configuration Constants ---
         const R_KTS_TO_KMH = 1.852; 
         const R_FT_TO_KM = 0.0003048;
 
-        // --- REALISM FACTORS (Increased for desired longer flight time) ---
-        const ROUTING_FACTOR = 1.08; 
+        // --- REALISM FACTORS (Maximized for longest realistic block time) ---
+        // 1. ROUTING FACTOR: Accounts for non-Great Circle routing (Airways, ATC, etc.)
+        const ROUTING_FACTOR = 1.09; // Increased to 9%
         const adjustedDistance = distance * ROUTING_FACTOR; 
 
+        // 2. WIND FACTOR: Accounts for strong headwinds/tailwinds on long routes.
         const isWestbound = depCoord[1] > arrCoord[1]; 
         let WIND_FACTOR = 1.0; 
 
-        if (adjustedDistance > 4000) { 
+        if (adjustedDistance > 4500) { 
             if (isWestbound) {
-                WIND_FACTOR = 1.12; 
+                WIND_FACTOR = 1.13; // Increased to 13% time for headwinds/maximum block padding
             } else {
-                WIND_FACTOR = 0.95; 
+                WIND_FACTOR = 0.94; // Less tailwind benefit
             }
         }
-        // ----------------------------------------------------
+        // 3. LOW SPEED/GROUND TIME: Accounts for taxi, approach, and holding.
+        const ADDED_TIME_FOR_LOW_SPEED = 0.45; // Increased to 27 minutes (0.45 hours) buffer
 
-        // Phase 1: Climb 
-        const SPEED_BELOW_10K_KTS = 250;
-        const SPEED_BELOW_10K_KMH = SPEED_BELOW_10K_KTS * R_KTS_TO_KMH; 
-        const ALTITUDE_10K_KM = 10000 * R_FT_TO_KM; 
-        const CLIMB_RATE_KMH = (1000 * R_FT_TO_KM) * 60; 
-
-        // Phase 2: Cruise
-        let cruiseSpeed = 830; 
+        // Phase 2: Cruise Speed (Slightly reduced for conservatism)
+        let cruiseSpeed = 820; // default km/h (short/medium haul)
         let cruiseAltitude = 7; 
         
-        if (adjustedDistance > 4000) { 
-            cruiseSpeed = 880; 
-            cruiseAltitude = 10.5; 
+        if (adjustedDistance > 4500) { 
+            cruiseSpeed = 875; // Slower cruise for block time padding
+            cruiseAltitude = 10.8; 
         }
 
-        // Phase 3: Descent
+        // --- Calculation (Based on standard climb/descent profiles) ---
+        const ALTITUDE_10K_KM = 10000 * R_FT_TO_KM; 
+        const SPEED_BELOW_10K_KMH = 250 * R_KTS_TO_KMH; 
+        const CLIMB_RATE_KMH = (1000 * R_FT_TO_KM) * 60; 
         const DESCENT_RATE_KMH = (1500 * R_FT_TO_KM) * 60; 
         const AVG_DESCENT_SPEED_KMH = 550; 
         const AVG_CLIMB_ABOVE_10K_KMH = 600; 
-        const ADDED_TIME_FOR_LOW_SPEED = 0.4167; // 25 minutes buffer
 
-        // ----------------------------------------------------
-
-        // 1. CLIMB TIME and Distance
+        // 1. CLIMB
         const timeTo10K = ALTITUDE_10K_KM / CLIMB_RATE_KMH;
         const distTo10K = timeTo10K * SPEED_BELOW_10K_KMH;
 
@@ -364,17 +361,18 @@
         const totalClimbTime = timeTo10K + timeAbove10K;
         const totalClimbDist = distTo10K + distAbove10K;
 
-        // 2. DESCENT TIME and Distance
+        // 2. DESCENT
         const totalDescentTime = cruiseAltitude / DESCENT_RATE_KMH;
         const totalDescentDist = totalDescentTime * AVG_DESCENT_SPEED_KMH;
 
-        // 3. CRUISE TIME
+        // 3. CRUISE
         const cruiseDist = adjustedDistance - totalClimbDist - totalDescentDist;
         let cruiseTime = 0;
 
         if (cruiseDist > 0) {
             cruiseTime = cruiseDist / cruiseSpeed;
         } else {
+            // Very short flight: simple average speed
             const avgSpeed = (SPEED_BELOW_10K_KMH + cruiseSpeed) / 2;
             let time = (adjustedDistance / avgSpeed) + ADDED_TIME_FOR_LOW_SPEED;
             return time * WIND_FACTOR;
@@ -430,7 +428,7 @@
         const departureLocal = now;
         const arrivalLocal = new Date(now.getTime() + flightHours * 3600000); 
 
-        // Output results (Removed the specific fine-print disclaimer)
+        // Output results 
         document.getElementById('results').innerHTML = `
             <h3>Flight Details</h3>
             <p>Route Distance (Great Circle): <strong>${distance.toFixed(1)} km</strong></p>
